@@ -30,7 +30,7 @@ class PortfolioApp {
                     <h4>Connect With Me</h4>
                     <p>📧 <span class="contact-link" onclick="window.open('mailto:wzullah.farhan@gmail.com')">wzullah.farhan@gmail.com</span></p>
                     <p>💼 <span class="contact-link" onclick="window.open('https://linkedin.com/in/w2zfrhn')">LinkedIn: w2zfrhn</span></p>
-                    <p>🐙 <span class="contact-link" onclick="window.open('https://github.com/w2zfrhn')">GitHub: w2zfrhn</span></p>
+                    <p>🐙 <span class="contact-link" onclick="window.open('https://github.com/wazehfarhan')">GitHub: wazehfarhan</span></p>
                 </div>
             </div>
         `;

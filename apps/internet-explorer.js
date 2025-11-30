@@ -7,7 +7,7 @@ class InternetExplorerApp {
                     <button class="xp-button" onclick="InternetExplorerApp.goForward(this)">→ Forward</button>
                     <button class="xp-button" onclick="InternetExplorerApp.refreshPage(this)">↻ Refresh</button>
                     <input type="text" class="browser-address-bar" id="browserAddress" 
-                           value="https://www.farhan-portfolio.com" 
+                           value="https://www.github.com/wazehfarhan.com" 
                            onkeypress="if(event.key=='Enter') InternetExplorerApp.navigateToUrl(this.value)">
                     <button class="xp-button" onclick="InternetExplorerApp.navigateToUrl(document.getElementById('browserAddress').value)">Go</button>
                     <button class="xp-button" onclick="InternetExplorerApp.showHomePage(this)">Home</button>
@@ -68,7 +68,7 @@ class InternetExplorerApp {
         
         switch(page) {
             case 'portfolio':
-                addressBar.value = 'https://farhan-portfolio.com/main';
+                addressBar.value = 'https://github.com/wazehfarhan/main';
                 content.innerHTML = `
                     <div class="browser-placeholder">
                         <h2>My Portfolio</h2>
@@ -85,7 +85,7 @@ class InternetExplorerApp {
                 break;
                 
             case 'github':
-                addressBar.value = 'https://github.com/w2zfrhn';
+                addressBar.value = 'https://github.com/wazehfarhan';
                 content.innerHTML = `
                     <div class="browser-placeholder">
                         <h2>GitHub Profile</h2>
@@ -99,7 +99,7 @@ class InternetExplorerApp {
                                 <li>Bank Management System</li>
                             </ul>
                         </div>
-                        <p><em>Visit actual GitHub: github.com/w2zfrhn</em></p>
+                        <p><em>Visit actual GitHub: github.com/wazehfarhan</em></p>
                         <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
@@ -123,14 +123,14 @@ class InternetExplorerApp {
                 break;
                 
             case 'education':
-                addressBar.value = 'https://farhan-portfolio.com/education';
+                addressBar.value = 'https://github.com/wazehfarhan/education';
                 content.innerHTML = `
                     <div class="browser-placeholder">
                         <h2>Education Hub</h2>
                         <div style="text-align: left; margin: 20px 0;">
                             <h4>American International University-Bangladesh (AIUB)</h4>
                             <p>BSc in Computer Science & Engineering</p>
-                            <p>Student ID: 23-50577-1 | Semester: 6</p>
+                            <p>Student ID: 23-50577-1 | Semester: 9</p>
                             
                             <h4 style="margin-top: 20px;">Holy Land College</h4>
                             <p>Higher Secondary Certificate (HSC)</p>
@@ -142,7 +142,7 @@ class InternetExplorerApp {
                 break;
                 
             case 'projects':
-                addressBar.value = 'https://farhan-portfolio.com/projects';
+                addressBar.value = 'https://github.com/wazehfarhan/projects';
                 content.innerHTML = `
                     <div class="browser-placeholder">
                         <h2>Projects Gallery</h2>
@@ -169,13 +169,13 @@ class InternetExplorerApp {
                 break;
                 
             case 'contact':
-                addressBar.value = 'https://farhan-portfolio.com/contact';
+                addressBar.value = 'https://github.com/wazehfarhan/contact';
                 content.innerHTML = `
                     <div class="browser-placeholder">
                         <h2>Contact Portal</h2>
                         <div style="text-align: left; margin: 20px 0;">
                             <p><strong>Email:</strong> wzullah.farhan@gmail.com</p>
-                            <p><strong>GitHub:</strong> github.com/w2zfrhn</p>
+                            <p><strong>GitHub:</strong> github.com/wazehfarhan</p>
                             <p><strong>LinkedIn:</strong> linkedin.com/in/w2zfrhn</p>
                         </div>
                         <div style="padding: 15px; background: #e8f4f8; border-radius: 5px; margin: 20px 0;">
@@ -221,7 +221,7 @@ class InternetExplorerApp {
         const content = document.getElementById('browserContent');
         const addressBar = document.getElementById('browserAddress');
         
-        addressBar.value = 'https://www.farhan-portfolio.com';
+        addressBar.value = 'https://github.com/wazehfarhan';
         content.innerHTML = `
             <div class="browser-placeholder">
                 <h2>Internet Explorer</h2>

@@ -9,7 +9,7 @@ class ResumeApp {
                     <div style="margin-left: 20px;">
                         <p><strong>American International University-Bangladesh (AIUB)</strong></p>
                         <p>BSc in Computer Science & Engineering</p>
-                        <p>Student ID: 23-50577-1 | Semester: 6</p>
+                        <p>Student ID: 23-50577-1 | Semester: 9</p>
                         <p><strong>Holy Land College</strong></p>
                         <p>HSC | GPA: 5.00</p>
                     </div>

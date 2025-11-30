@@ -29,7 +29,7 @@ class ContactApp {
                         <div>
                             <h4 style="margin: 0;">GitHub</h4>
                             <p style="margin: 5px 0; font-size: 14px;">github.com/w2zfrhn</p>
-                            <button class="xp-button" onclick="window.open('https://github.com/w2zfrhn')">View Profile</button>
+                            <button class="xp-button" onclick="window.open('https://github.com/wazehfarhan')">View Profile</button>
                         </div>
                     </div>
                 </div>

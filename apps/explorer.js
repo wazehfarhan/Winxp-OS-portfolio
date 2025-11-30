@@ -65,7 +65,7 @@ class ExplorerApp {
                             <div class="file-icon"></div>
                             <span>skills.txt</span>
                         </div>
-                        <div class="explorer-item" onclick="alert('contact.txt\\n\\nContact Information:\\nEmail: wzullah.farhan@gmail.com\\nGitHub: w2zfrhn\\nLinkedIn: w2zfrhn')">
+                        <div class="explorer-item" onclick="alert('contact.txt\\n\\nContact Information:\\nEmail: wzullah.farhan@gmail.com\\nGitHub: wazehfarhan\\nLinkedIn: w2zfrhn')">
                             <div class="file-icon"></div>
                             <span>contact.txt</span>
                         </div>
