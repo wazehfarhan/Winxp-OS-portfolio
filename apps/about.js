@@ -3,7 +3,7 @@ class AboutApp {
         const content = `
             <div class="about-content">
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #7db9e8, #1e5799); margin: 0 auto 10px; border-radius: 50%;"></div>
+                    <div style="width: 80px; height: 80px; background-image: url('assets/img/propic.png'); background-size: cover; margin: 0 auto 10px; border-radius: 50%;"></div>
                     <h3>Kazi Md. Wazeh Ullah Farhan</h3>
                     <p><em>Computer Science & Engineering Student</em></p>
                 </div>
