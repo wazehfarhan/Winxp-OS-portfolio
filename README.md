@@ -118,24 +118,24 @@ A fully functional, browser-based clone of Windows XP built with pure HTML, CSS,
     - **Username: Guest (or any name)
     - **Password: 1234
 ### 🎮 How to Use
-    - **Basic Navigation
-    - **Double-click desktop icons to open applications
+    Basic Navigation
+    Double-click desktop icons to open applications
 
-    - **Click and drag window title bars to move windows    
+    Click and drag window title bars to move windows    
 
-    - **Use the resize handle (bottom-right) to resize windows
+    Use the resize handle (bottom-right) to resize windows
 
-    - **Right-click on desktop for context menu
+    Right-click on desktop for context menu
 
-    - **Click Start button for application menu
+    Click Start button for application menu
 
 ### Application Features
-    - **Drawing App: Use brush size slider and color picker to draw
+    Drawing App: Use brush size slider and color picker to draw
 
-    - **Calendar: Navigate months with arrow buttons, click dates
+    Calendar: Navigate months with arrow buttons, click dates
 
-    - **Internet Explorer: Browse portfolio sections via the website list
+    Internet Explorer: Browse portfolio sections via the website list
 
-    - **File Explorer: Click folders and files to view information
+    File Explorer: Click folders and files to view information
 
 
