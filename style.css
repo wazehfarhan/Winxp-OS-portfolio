@@ -202,12 +202,13 @@ body {
 
 /* Desktop */
 #desktop {
-    background: linear-gradient(135deg, #245ed1, #3a7be0);
+    background: url('assets/walpaper/walpaper.png') center/cover no-repeat;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 20px;
     overflow: hidden;
 }
+
 
 .desktop-icons {
     display: grid;

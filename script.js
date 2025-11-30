@@ -98,6 +98,14 @@ class WindowsXPWebOS {
         desktop.classList.add(`wallpaper-${wallpaperName}`);
         this.wallpaper = wallpaperName;
     }
+    // In script.js, add this method to WindowsXPWebOS class
+changeWallpaper(wallpaperName) {
+    this.applyWallpaper(wallpaperName);
+}
+
+// Example usage:
+// os.changeWallpaper('green');
+// os.changeWallpaper('sunset');
     
     initializeDesktop() {
         // Create window manager
