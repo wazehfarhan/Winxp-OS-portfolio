@@ -2,6 +2,7 @@
 class WindowsXPWebOS {
     constructor() {
         this.currentScreen = 'boot';
+        this.wallpaper = 'default';
         this.init();
     }
     
@@ -12,6 +13,13 @@ class WindowsXPWebOS {
         // Set up login
         document.getElementById('login-btn').addEventListener('click', () => {
             this.login();
+        });
+        
+        // Allow login with Enter key
+        document.getElementById('password').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.login();
+            }
         });
         
         // Set up desktop interactions
@@ -42,21 +50,53 @@ class WindowsXPWebOS {
         document.getElementById('boot-screen').classList.add('hidden');
         document.getElementById('login-screen').classList.remove('hidden');
         this.currentScreen = 'login';
+        
+        // Focus on password field
+        setTimeout(() => {
+            document.getElementById('password').focus();
+        }, 100);
     }
     
     login() {
-        const username = document.getElementById('username').value || 'Guest';
+        const password = document.getElementById('password').value;
+        const loginError = document.getElementById('login-error');
         
-        // Update user name in start menu
-        document.querySelector('.user-name').textContent = username;
-        
-        // Show desktop
-        document.getElementById('login-screen').classList.add('hidden');
-        document.getElementById('desktop').classList.remove('hidden');
-        this.currentScreen = 'desktop';
-        
-        // Initialize desktop components
-        this.initializeDesktop();
+        // Check password (1234)
+        if (password === '1234') {
+            const username = document.getElementById('username').value || 'Guest';
+            
+            // Update user name in start menu
+            document.querySelector('.user-name').textContent = username;
+            
+            // Show desktop
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('desktop').classList.remove('hidden');
+            this.currentScreen = 'desktop';
+            
+            // Apply wallpaper
+            this.applyWallpaper(this.wallpaper);
+            
+            // Initialize desktop components
+            this.initializeDesktop();
+            
+            // Clear password field for next login
+            document.getElementById('password').value = '';
+            loginError.classList.add('hidden');
+        } else {
+            // Show error message
+            loginError.classList.remove('hidden');
+            document.getElementById('password').value = '';
+            document.getElementById('password').focus();
+        }
+    }
+    
+    applyWallpaper(wallpaperName) {
+        const desktop = document.getElementById('desktop');
+        // Remove all wallpaper classes
+        desktop.classList.remove('wallpaper-default', 'wallpaper-blue', 'wallpaper-green', 'wallpaper-sunset', 'wallpaper-dark');
+        // Add the selected wallpaper class
+        desktop.classList.add(`wallpaper-${wallpaperName}`);
+        this.wallpaper = wallpaperName;
     }
     
     initializeDesktop() {
@@ -74,6 +114,9 @@ class WindowsXPWebOS {
         
         // Set up context menu
         this.setupContextMenu();
+        
+        // Add wallpaper changer to context menu (optional)
+        this.addWallpaperOptions();
     }
     
     setupDesktopIcons() {
@@ -96,9 +139,7 @@ class WindowsXPWebOS {
             // Double click to launch app
             icon.addEventListener('dblclick', () => {
                 const appId = icon.getAttribute('data-app');
-                if (appId && appId !== 'recycle-bin') {
-                    this.taskbarManager.launchApp(appId);
-                }
+                this.taskbarManager.launchApp(appId);
             });
         });
         
@@ -120,14 +161,19 @@ class WindowsXPWebOS {
             e.preventDefault();
             
             // Position context menu at cursor
-            contextMenu.style.left = `${e.clientX}px`;
-            contextMenu.style.top = `${e.clientY}px`;
+            const x = Math.min(e.clientX, window.innerWidth - 160);
+            const y = Math.min(e.clientY, window.innerHeight - 200);
+            
+            contextMenu.style.left = `${x}px`;
+            contextMenu.style.top = `${y}px`;
             contextMenu.classList.remove('hidden');
+            setTimeout(() => contextMenu.classList.add('visible'), 10);
         });
         
         // Hide context menu when clicking elsewhere
         document.addEventListener('click', () => {
-            contextMenu.classList.add('hidden');
+            contextMenu.classList.remove('visible');
+            setTimeout(() => contextMenu.classList.add('hidden'), 200);
         });
         
         // Prevent context menu from closing when clicking inside it
@@ -136,8 +182,9 @@ class WindowsXPWebOS {
         });
     }
     
-    setupDesktop() {
-        // Additional desktop setup if needed
+    addWallpaperOptions() {
+        // This can be extended to add wallpaper changing functionality
+        console.log('Wallpaper options ready - extend this method to add UI for changing wallpapers');
     }
 }
 

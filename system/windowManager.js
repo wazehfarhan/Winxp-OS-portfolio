@@ -4,15 +4,16 @@ class WindowManager {
         this.zIndex = 100;
         this.windowsContainer = document.getElementById('windows-container');
         this.taskbarApps = document.getElementById('taskbar-apps');
+        this.dragging = null;
+        this.resizing = null;
+        this.dragOffset = { x: 0, y: 0 };
         
         this.init();
     }
     
     init() {
-        // Add event listeners for window management
-        document.addEventListener('mousedown', (e) => this.handleMouseDown(e));
         document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-        document.addEventListener('mouseup', (e) => this.handleMouseUp(e));
+        document.addEventListener('mouseup', () => this.handleMouseUp());
     }
     
     createWindow(appId, title, content, options = {}) {
@@ -39,6 +40,9 @@ class WindowManager {
         windowElement.style.left = `${config.x}px`;
         windowElement.style.top = `${config.y}px`;
         
+        const resizeHandle = config.resizable ? 
+            '<div class="window-resize-handle"></div>' : '';
+        
         windowElement.innerHTML = `
             <div class="window-header">
                 <div class="window-title">${title}</div>
@@ -51,6 +55,7 @@ class WindowManager {
             <div class="window-content">
                 ${content}
             </div>
+            ${resizeHandle}
         `;
         
         this.windowsContainer.appendChild(windowElement);
@@ -67,9 +72,9 @@ class WindowManager {
         };
         
         this.windows.push(windowObj);
+        this.attachWindowEvents(windowObj);
         this.bringToFront(windowObj);
         this.addTaskbarItem(windowObj);
-        this.attachWindowEvents(windowObj);
         
         return windowObj;
     }
@@ -80,57 +85,102 @@ class WindowManager {
         const minimizeBtn = element.querySelector('.minimize');
         const maximizeBtn = element.querySelector('.maximize');
         const closeBtn = element.querySelector('.close');
+        const resizeHandle = element.querySelector('.window-resize-handle');
         
-        // Drag functionality
+        // Drag functionality - FIXED: Direct event handling for performance
         header.addEventListener('mousedown', (e) => {
             if (e.target.classList.contains('window-control')) return;
             this.startDrag(windowObj, e);
         });
         
+        // Resize functionality
+        if (resizeHandle && config.resizable) {
+            resizeHandle.addEventListener('mousedown', (e) => {
+                this.startResize(windowObj, e);
+            });
+        }
+        
         // Window controls
         if (minimizeBtn) {
-            minimizeBtn.addEventListener('click', () => this.minimizeWindow(windowObj));
+            minimizeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.minimizeWindow(windowObj);
+            });
         }
         
         if (maximizeBtn) {
-            maximizeBtn.addEventListener('click', () => this.toggleMaximize(windowObj));
+            maximizeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.toggleMaximize(windowObj);
+            });
         }
         
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => this.closeWindow(windowObj));
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.closeWindow(windowObj);
+            });
         }
         
         // Focus on click
-        element.addEventListener('mousedown', () => {
-            this.bringToFront(windowObj);
+        element.addEventListener('mousedown', (e) => {
+            if (!e.target.classList.contains('window-control')) {
+                this.bringToFront(windowObj);
+            }
         });
     }
     
     startDrag(windowObj, e) {
         if (windowObj.isMaximized) return;
         
-        const element = windowObj.element;
-        const startX = e.clientX;
-        const startY = e.clientY;
-        const startLeft = parseInt(element.style.left);
-        const startTop = parseInt(element.style.top);
+        this.dragging = windowObj;
+        const rect = windowObj.element.getBoundingClientRect();
+        this.dragOffset.x = e.clientX - rect.left;
+        this.dragOffset.y = e.clientY - rect.top;
         
-        const dragMove = (e) => {
-            const deltaX = e.clientX - startX;
-            const deltaY = e.clientY - startY;
-            element.style.left = `${startLeft + deltaX}px`;
-            element.style.top = `${startTop + deltaY}px`;
-        };
-        
-        const dragEnd = () => {
-            document.removeEventListener('mousemove', dragMove);
-            document.removeEventListener('mouseup', dragEnd);
-        };
-        
-        document.addEventListener('mousemove', dragMove);
-        document.addEventListener('mouseup', dragEnd);
-        
+        this.bringToFront(windowObj);
         e.preventDefault();
+    }
+    
+    startResize(windowObj, e) {
+        if (windowObj.isMaximized) return;
+        
+        this.resizing = windowObj;
+        this.initialSize = {
+            width: parseInt(windowObj.element.style.width),
+            height: parseInt(windowObj.element.style.height)
+        };
+        this.resizeStart = { x: e.clientX, y: e.clientY };
+        
+        this.bringToFront(windowObj);
+        e.preventDefault();
+    }
+    
+    handleMouseMove(e) {
+        // FIXED: Direct DOM manipulation for maximum performance
+        if (this.dragging) {
+            const x = e.clientX - this.dragOffset.x;
+            const y = e.clientY - this.dragOffset.y;
+            
+            this.dragging.element.style.left = `${x}px`;
+            this.dragging.element.style.top = `${y}px`;
+        }
+        
+        if (this.resizing) {
+            const deltaX = e.clientX - this.resizeStart.x;
+            const deltaY = e.clientY - this.resizeStart.y;
+            
+            const newWidth = Math.max(300, this.initialSize.width + deltaX);
+            const newHeight = Math.max(200, this.initialSize.height + deltaY);
+            
+            this.resizing.element.style.width = `${newWidth}px`;
+            this.resizing.element.style.height = `${newHeight}px`;
+        }
+    }
+    
+    handleMouseUp() {
+        this.dragging = null;
+        this.resizing = null;
     }
     
     bringToFront(windowObj) {
@@ -142,6 +192,16 @@ class WindowManager {
         // Bring clicked window to front
         windowObj.zIndex = this.zIndex++;
         windowObj.element.style.zIndex = windowObj.zIndex;
+        
+        // Update taskbar active state
+        document.querySelectorAll('.taskbar-app').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        const taskbarItem = document.querySelector(`[data-window-id="${windowObj.id}"]`);
+        if (taskbarItem) {
+            taskbarItem.classList.add('active');
+        }
     }
     
     minimizeWindow(windowObj) {
@@ -216,23 +276,6 @@ class WindowManager {
         windowObj.isMinimized = false;
         windowObj.element.style.display = 'block';
         this.bringToFront(windowObj);
-        
-        const taskbarItem = document.querySelector(`[data-window-id="${windowObj.id}"]`);
-        if (taskbarItem) {
-            taskbarItem.classList.add('active');
-        }
-    }
-    
-    handleMouseDown(e) {
-        // Handle resize if needed
-    }
-    
-    handleMouseMove(e) {
-        // Handle resize if needed
-    }
-    
-    handleMouseUp(e) {
-        // Handle resize if needed
     }
     
     getWindowByAppId(appId) {

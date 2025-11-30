@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows XP Web OS</title>
+    <title>Farhan's Portfolio OS</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/xp.css">
 </head>
@@ -14,7 +14,7 @@
             <div class="boot-logo">
                 <div class="xp-logo">
                     <div class="xp-window"></div>
-                    <div class="xp-text">Microsoft Windows XP</div>
+                    <div class="xp-text">Farhan's Portfolio OS</div>
                 </div>
             </div>
             <div class="boot-progress">
@@ -30,15 +30,18 @@
         <div class="login-container">
             <div class="login-header">
                 <div class="xp-logo-small">
+                    
                     <div class="xp-window-small"></div>
                 </div>
-                <h1>Windows XP</h1>
+                <h1>Farhan's Portfolio</h1>
             </div>
             <div class="login-form">
+                
                 <div class="user-icon"></div>
                 <div class="login-inputs">
-                    <input type="text" id="username" placeholder="Username" value="Guest">
+                    <input type="text" id="username" placeholder="Username" value="wazeh farhan">
                     <input type="password" id="password" placeholder="Password">
+                    <div id="login-error" class="login-error hidden">Invalid password! Try 1234</div>
                     <button id="login-btn">Login</button>
                 </div>
             </div>
@@ -49,29 +52,49 @@
     <div id="desktop" class="screen hidden">
         <!-- Desktop Icons -->
         <div class="desktop-icons">
-            <div class="desktop-icon" data-app="explorer">
-                <div class="icon my-computer"></div>
-                <span>My Computer</span>
+            <div class="desktop-icon" data-app="portfolio">
+                <div class="icon portfolio"></div>
+                <span>My Portfolio</span>
+            </div>
+            <div class="desktop-icon" data-app="resume">
+                <div class="icon resume"></div>
+                <span>My Resume</span>
+            </div>
+            <div class="desktop-icon" data-app="projects">
+                <div class="icon projects"></div>
+                <span>My Projects</span>
+            </div>
+            <div class="desktop-icon" data-app="education">
+                <div class="icon education"></div>
+                <span>My Education</span>
+            </div>
+            <div class="desktop-icon" data-app="skills">
+                <div class="icon skills"></div>
+                <span>My Skills</span>
+            </div>
+            <div class="desktop-icon" data-app="about">
+                <div class="icon about"></div>
+                <span>About Me</span>
+            </div>
+            <div class="desktop-icon" data-app="drawing">
+                <div class="icon drawing"></div>
+                <span>Drawing App</span>
+            </div>
+            <div class="desktop-icon" data-app="calendar">
+                <div class="icon calendar"></div>
+                <span>Calendar</span>
             </div>
             <div class="desktop-icon" data-app="explorer">
-                <div class="icon my-documents"></div>
-                <span>My Documents</span>
+                <div class="icon explorer"></div>
+                <span>File Explorer</span>
             </div>
-            <div class="desktop-icon" data-app="notepad">
-                <div class="icon notepad"></div>
-                <span>Notepad</span>
+            <div class="desktop-icon" data-app="contact">
+                <div class="icon contact"></div>
+                <span>Contact Info</span>
             </div>
-            <div class="desktop-icon" data-app="browser">
-                <div class="icon browser"></div>
+            <div class="desktop-icon" data-app="internet-explorer">
+                <div class="icon internet-explorer"></div>
                 <span>Internet Explorer</span>
-            </div>
-            <div class="desktop-icon" data-app="imageviewer">
-                <div class="icon image-viewer"></div>
-                <span>Image Viewer</span>
-            </div>
-            <div class="desktop-icon" data-app="recycle-bin">
-                <div class="icon recycle-bin"></div>
-                <span>Recycle Bin</span>
             </div>
         </div>
 
@@ -80,15 +103,14 @@
 
         <!-- Context Menu -->
         <div id="context-menu" class="context-menu hidden">
-            <div class="context-item">View</div>
-            <div class="context-item">Arrange Icons By</div>
+            <div class="context-item">Open</div>
             <div class="context-separator"></div>
-            <div class="context-item">Refresh</div>
+            <div class="context-item">Refresh Desktop</div>
             <div class="context-separator"></div>
             <div class="context-item">Paste</div>
-            <div class="context-item">Paste Shortcut</div>
             <div class="context-separator"></div>
-            <div class="context-item">New</div>
+            <div class="context-item">New Folder</div>
+            <div class="context-item">New Text File</div>
             <div class="context-separator"></div>
             <div class="context-item">Properties</div>
         </div>
@@ -100,9 +122,11 @@
                 <span>Start</span>
             </div>
             <div id="quick-launch" class="quick-launch">
+                <div class="quick-icon portfolio" data-app="portfolio"></div>
                 <div class="quick-icon explorer" data-app="explorer"></div>
-                <div class="quick-icon browser" data-app="browser"></div>
-                <div class="quick-icon notepad" data-app="notepad"></div>
+                <div class="quick-icon drawing" data-app="drawing"></div>
+                <div class="quick-icon calendar" data-app="calendar"></div>
+                <div class="quick-icon internet-explorer" data-app="internet-explorer"></div>
             </div>
             <div id="taskbar-apps" class="taskbar-apps"></div>
             <div id="system-tray" class="system-tray">
@@ -118,51 +142,61 @@
         <div id="start-menu" class="start-menu hidden">
             <div class="start-menu-header">
                 <div class="user-picture"></div>
-                <div class="user-name">Guest</div>
+                <div class="user-name">Kazi Md. Wazeh Ullah Farhan</div>
             </div>
-            <div class="start-menu-left">
-                <div class="start-menu-item" data-app="explorer">
-                    <div class="menu-icon my-computer"></div>
-                    <span>My Computer</span>
-                </div>
-                <div class="start-menu-item" data-app="explorer">
-                    <div class="menu-icon my-documents"></div>
-                    <span>My Documents</span>
-                </div>
-                <div class="start-menu-item" data-app="notepad">
-                    <div class="menu-icon notepad"></div>
-                    <span>Notepad</span>
-                </div>
-                <div class="start-menu-item" data-app="browser">
-                    <div class="menu-icon browser"></div>
-                    <span>Internet Explorer</span>
-                </div>
-                <div class="start-menu-item" data-app="imageviewer">
-                    <div class="menu-icon image-viewer"></div>
-                    <span>Image Viewer</span>
-                </div>
-            </div>
-            <div class="start-menu-right">
-                <div class="start-menu-section">
-                    <div class="start-menu-item">
-                        <div class="menu-icon control-panel"></div>
-                        <span>Control Panel</span>
+            <div class="start-menu-content">
+                <div class="start-menu-left">
+                    <div class="start-menu-item" data-app="portfolio">
+                        <div class="menu-icon portfolio"></div>
+                        <span>My Portfolio</span>
                     </div>
-                    <div class="start-menu-item">
-                        <div class="menu-icon printers"></div>
-                        <span>Printers and Faxes</span>
+                    <div class="start-menu-item" data-app="resume">
+                        <div class="menu-icon resume"></div>
+                        <span>My Resume</span>
                     </div>
-                    <div class="start-menu-item">
-                        <div class="menu-icon help"></div>
-                        <span>Help and Support</span>
+                    <div class="start-menu-item" data-app="projects">
+                        <div class="menu-icon projects"></div>
+                        <span>My Projects</span>
                     </div>
-                    <div class="start-menu-item">
-                        <div class="menu-icon search"></div>
-                        <span>Search</span>
+                    <div class="start-menu-item" data-app="education">
+                        <div class="menu-icon education"></div>
+                        <span>My Education</span>
                     </div>
-                    <div class="start-menu-item">
-                        <div class="menu-icon run"></div>
-                        <span>Run...</span>
+                    <div class="start-menu-item" data-app="skills">
+                        <div class="menu-icon skills"></div>
+                        <span>My Skills</span>
+                    </div>
+                    <div class="start-menu-item" data-app="about">
+                        <div class="menu-icon about"></div>
+                        <span>About Me</span>
+                    </div>
+                </div>
+                <div class="start-menu-right">
+                    <div class="start-menu-section">
+                        <div class="start-menu-item" data-app="drawing">
+                            <div class="menu-icon drawing"></div>
+                            <span>Drawing App</span>
+                        </div>
+                        <div class="start-menu-item" data-app="calendar">
+                            <div class="menu-icon calendar"></div>
+                            <span>Calendar</span>
+                        </div>
+                        <div class="start-menu-item" data-app="explorer">
+                            <div class="menu-icon explorer"></div>
+                            <span>File Explorer</span>
+                        </div>
+                        <div class="start-menu-item" data-app="internet-explorer">
+                            <div class="menu-icon internet-explorer"></div>
+                            <span>Internet Explorer</span>
+                        </div>
+                        <div class="start-menu-item" data-app="contact">
+                            <div class="menu-icon contact"></div>
+                            <span>Contact Info</span>
+                        </div>
+                        <div class="start-menu-item" data-app="notepad">
+                            <div class="menu-icon notepad"></div>
+                            <span>Notepad</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -202,10 +236,18 @@
     <script src="system/windowManager.js"></script>
     <script src="system/taskbar.js"></script>
     <script src="system/startMenu.js"></script>
-    <script src="apps/notepad.js"></script>
+    <script src="apps/portfolio.js"></script>
+    <script src="apps/resume.js"></script>
+    <script src="apps/projects.js"></script>
+    <script src="apps/education.js"></script>
+    <script src="apps/skills.js"></script>
+    <script src="apps/about.js"></script>
+    <script src="apps/contact.js"></script>
+    <script src="apps/drawing.js"></script>
+    <script src="apps/calendar.js"></script>
     <script src="apps/explorer.js"></script>
-    <script src="apps/browser.js"></script>
-    <script src="apps/imageviewer.js"></script>
+    <script src="apps/notepad.js"></script>
+    <script src="apps/internet-explorer.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

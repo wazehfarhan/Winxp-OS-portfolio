@@ -9,10 +9,12 @@
     font-size: 11px;
     cursor: pointer;
     color: #000;
+    transition: all 0.2s ease;
 }
 
 .xp-button:hover {
     background: linear-gradient(to bottom, #f6f3e2, #e6e3d4);
+    transform: scale(1.05);
 }
 
 .xp-button:active {
@@ -61,12 +63,14 @@
     border-radius: 3px;
     padding: 4px 6px;
     font-size: 11px;
+    transition: all 0.2s ease;
 }
 
 .xp-input:focus {
     outline: none;
     border-color: #316ac5;
     box-shadow: 0 0 3px rgba(49, 106, 197, 0.5);
+    transform: scale(1.02);
 }
 
 /* XP Menu Styles */
@@ -81,11 +85,13 @@
     font-size: 12px;
     cursor: pointer;
     position: relative;
+    transition: all 0.2s ease;
 }
 
 .xp-menu-item:hover {
     background: #316ac5;
     color: white;
+    transform: translateX(3px);
 }
 
 .xp-menu-separator {
@@ -155,4 +161,49 @@
 ::-moz-selection {
     background: #316ac5;
     color: white;
+}
+
+/* Animation keyframes */
+@keyframes windowOpen {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes windowClose {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes minimizeWindow {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes maximizeWindow {
+    0% {
+        transform: scale(1);
+        border-radius: 5px 5px 0 0;
+    }
+    100% {
+        transform: scale(1);
+        border-radius: 0;
+    }
 }

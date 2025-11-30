@@ -43,10 +43,12 @@ class TaskbarManager {
     
     showStartMenu() {
         this.startMenu.classList.remove('hidden');
+        setTimeout(() => this.startMenu.classList.add('visible'), 10);
     }
     
     hideStartMenu() {
-        this.startMenu.classList.add('hidden');
+        this.startMenu.classList.remove('visible');
+        setTimeout(() => this.startMenu.classList.add('hidden'), 300);
     }
     
     launchApp(appId) {
@@ -64,17 +66,41 @@ class TaskbarManager {
         
         // Launch new app instance
         switch (appId) {
-            case 'notepad':
-                NotepadApp.launch(this.windowManager);
+            case 'portfolio':
+                PortfolioApp.launch(this.windowManager);
+                break;
+            case 'resume':
+                ResumeApp.launch(this.windowManager);
+                break;
+            case 'projects':
+                ProjectsApp.launch(this.windowManager);
+                break;
+            case 'education':
+                EducationApp.launch(this.windowManager);
+                break;
+            case 'skills':
+                SkillsApp.launch(this.windowManager);
+                break;
+            case 'about':
+                AboutApp.launch(this.windowManager);
+                break;
+            case 'contact':
+                ContactApp.launch(this.windowManager);
+                break;
+            case 'drawing':
+                DrawingApp.launch(this.windowManager);
+                break;
+            case 'calendar':
+                CalendarApp.launch(this.windowManager);
                 break;
             case 'explorer':
                 ExplorerApp.launch(this.windowManager);
                 break;
-            case 'browser':
-                BrowserApp.launch(this.windowManager);
+            case 'notepad':
+                NotepadApp.launch(this.windowManager);
                 break;
-            case 'imageviewer':
-                ImageViewerApp.launch(this.windowManager);
+            case 'internet-explorer':
+                InternetExplorerApp.launch(this.windowManager);
                 break;
         }
     }

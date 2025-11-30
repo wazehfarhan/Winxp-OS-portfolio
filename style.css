@@ -179,6 +179,13 @@ body {
     border-radius: 3px;
 }
 
+.login-error {
+    color: #c00;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
 #login-btn {
     width: 100%;
     padding: 8px;
@@ -387,7 +394,7 @@ body {
 }
 
 .user-name {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -447,7 +454,7 @@ body {
     background: linear-gradient(to right, #f2b677, #e19c52);
 }
 
-/* Windows */
+/* Windows - FIXED: Removed slow animations for dragging */
 .window {
     position: absolute;
     background: #ece9d8;
@@ -457,6 +464,8 @@ body {
     min-width: 300px;
     min-height: 200px;
     z-index: 100;
+    /* Fast open/close animations only */
+    transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .window.maximized {
@@ -475,6 +484,7 @@ body {
     justify-content: space-between;
     cursor: move;
     border-radius: 3px 3px 0 0;
+    user-select: none;
 }
 
 .window-title {
@@ -510,6 +520,21 @@ body {
     padding: 10px;
     height: calc(100% - 30px);
     overflow: auto;
+}
+
+/* Resize Handle */
+.window-resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(135deg, transparent 50%, #003399 50%);
+    cursor: nw-resize;
+}
+
+.window.maximized .window-resize-handle {
+    display: none;
 }
 
 /* Context Menu */
@@ -610,4 +635,271 @@ body {
     background: rgba(30, 87, 153, 0.7);
     border-radius: 5px;
     margin-bottom: 5px;
+}
+
+/* App Specific Styles */
+.portfolio-content, .resume-content, .projects-content,
+.education-content, .skills-content, .about-content,
+.contact-content {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.contact-link {
+    color: #316ac5;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+.drawing-canvas {
+    border: 1px solid #ccc;
+    background: white;
+    cursor: crosshair;
+    display: block;
+}
+
+.drawing-controls {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #ccc;
+    border: 1px solid #ccc;
+}
+
+.calendar-day {
+    background: white;
+    padding: 8px;
+    text-align: center;
+    font-size: 11px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-day:hover {
+    background: #e6f3ff;
+}
+
+.calendar-day.header {
+    background: #316ac5;
+    color: white;
+    font-weight: bold;
+    cursor: default;
+}
+
+.calendar-day.today {
+    background: #ffd700;
+    font-weight: bold;
+}
+
+.calendar-day.other-month {
+    background: #f8f8f8;
+    color: #999;
+}
+
+.explorer-sidebar {
+    width: 200px;
+    background: #f0f0f0;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+}
+
+.explorer-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.explorer-item:hover {
+    background: #316ac5;
+    color: white;
+}
+
+.file-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.file-icon.folder {
+    background-color: #feca57;
+}
+
+/* FIXED: Icon styles with proper background images */
+.icon.portfolio { background-image: url('assets/icons/portfolio.svg'); }
+.icon.resume { background-image: url('assets/icons/resume.svg'); }
+.icon.projects { background-image: url('assets/icons/projects.svg'); }
+.icon.education { background-image: url('assets/icons/education.svg'); }
+.icon.skills { background-image: url('assets/icons/skills.svg'); }
+.icon.about { background-image: url('assets/icons/about.svg'); }
+.icon.drawing { background-image: url('assets/icons/drawing.svg'); }
+.icon.calendar { background-image: url('assets/icons/calendar.svg'); }
+.icon.explorer { background-image: url('assets/icons/explorer.svg'); }
+.icon.contact { background-image: url('assets/icons/contact.svg'); }
+.icon.notepad { background-image: url('assets/icons/notepad.svg'); }
+
+/* Quick launch icons */
+.quick-icon.portfolio { background-image: url('assets/icons/portfolio.svg'); background-size: 16px 16px; background-position: center; background-color: rgba(255,255,255,0.8); }
+.quick-icon.explorer { background-image: url('assets/icons/explorer.svg'); background-size: 16px 16px; background-position: center; background-color: rgba(255,255,255,0.8); }
+.quick-icon.drawing { background-image: url('assets/icons/drawing.svg'); background-size: 16px 16px; background-position: center; background-color: rgba(255,255,255,0.8); }
+.quick-icon.calendar { background-image: url('assets/icons/calendar.svg'); background-size: 16px 16px; background-position: center; background-color: rgba(255,255,255,0.8); }
+
+/* Menu icons */
+.menu-icon.portfolio { background-image: url('assets/icons/portfolio.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.resume { background-image: url('assets/icons/resume.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.projects { background-image: url('assets/icons/projects.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.education { background-image: url('assets/icons/education.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.skills { background-image: url('assets/icons/skills.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.about { background-image: url('assets/icons/about.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.drawing { background-image: url('assets/icons/drawing.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.calendar { background-image: url('assets/icons/calendar.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.explorer { background-image: url('assets/icons/explorer.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.contact { background-image: url('assets/icons/contact.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.notepad { background-image: url('assets/icons/notepad.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.shutdown { background: #ff6b6b; }
+
+/* File icons for explorer */
+.file-icon { background-image: url('assets/icons/notepad.svg'); background-size: 12px 12px; background-position: center; background-color: #45b7d1; }
+.file-icon.folder { background-image: url('assets/icons/explorer.svg'); background-size: 12px 12px; background-position: center; background-color: #feca57; }
+
+/* Remove background colors when icons are present */
+.icon.portfolio, .icon.resume, .icon.projects, 
+.icon.education, .icon.skills, .icon.about,
+.icon.drawing, .icon.calendar, .icon.explorer,
+.icon.contact, .icon.notepad {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.quick-icon {
+    background-color: transparent !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+}
+
+.menu-icon {
+    background-color: transparent !important;
+}
+/* Add to existing icon styles */
+.icon.internet-explorer { background-image: url('assets/icons/internet-explorer.svg'); }
+.icon.shutdown { background-image: url('assets/icons/shutdown.svg'); }
+
+/* Quick launch icons */
+.quick-icon.internet-explorer { background-image: url('assets/icons/internet-explorer.svg'); background-size: 16px 16px; background-position: center; background-color: rgba(255,255,255,0.8); }
+
+/* Menu icons */
+.menu-icon.internet-explorer { background-image: url('assets/icons/internet-explorer.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.shutdown { background-image: url('assets/icons/shutdown.svg'); background-size: 20px 20px; background-position: center; }
+
+/* Shutdown option icons */
+.option-icon.standby { background-image: url('assets/icons/standby.svg'); background-size: 48px 48px; background-position: center; background-color: transparent; }
+.option-icon.shutdown { background-image: url('assets/icons/shutdown.svg'); background-size: 48px 48px; background-position: center; background-color: transparent; }
+.option-icon.restart { background-image: url('assets/icons/restart.svg'); background-size: 48px 48px; background-position: center; background-color: transparent; }
+
+/* Internet Explorer specific styles */
+.browser-toolbar {
+    padding: 5px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.browser-address-bar {
+    flex: 1;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.browser-content {
+    flex: 1;
+    border: none;
+    background: white;
+}
+
+.browser-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.browser-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.browser-placeholder h2 {
+    color: #316ac5;
+    margin-bottom: 15px;
+}
+
+.browser-placeholder p {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.website-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.website-item {
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.website-item:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.website-item h4 {
+    color: #316ac5;
+    margin-bottom: 5px;
+}
+
+.website-item p {
+    font-size: 11px;
+    color: #666;
 }

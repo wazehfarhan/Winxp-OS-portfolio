@@ -1,0 +1,7 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="48" fill="#FECA57"/>
+<path d="M24 12L6 20L24 28L42 20L24 12Z" fill="white" stroke="#FECA57" stroke-width="2"/>
+<path d="M6 20V32L24 40L42 32V20" stroke="#FECA57" stroke-width="2" fill="none"/>
+<path d="M24 28V40" stroke="#FECA57" stroke-width="2"/>
+<circle cx="24" cy="20" r="2" fill="#FECA57"/>
+</svg>

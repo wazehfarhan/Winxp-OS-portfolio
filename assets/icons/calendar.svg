@@ -1,0 +1,12 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="48" fill="#FDCB6E"/>
+<rect x="6" y="10" width="36" height="32" rx="2" fill="white" stroke="#FDCB6E" stroke-width="2"/>
+<rect x="6" y="10" width="36" height="8" fill="#FDCB6E" fill-opacity="0.3"/>
+<rect x="14" y="22" width="6" height="6" rx="1" fill="#FDCB6E" fill-opacity="0.5"/>
+<rect x="24" y="22" width="6" height="6" rx="1" fill="#FDCB6E" fill-opacity="0.5"/>
+<rect x="34" y="22" width="6" height="6" rx="1" fill="#FDCB6E" fill-opacity="0.5"/>
+<rect x="14" y="32" width="6" height="6" rx="1" fill="#FDCB6E" fill-opacity="0.5"/>
+<rect x="24" y="32" width="6" height="6" rx="1" fill="#FDCB6E" fill-opacity="0.5"/>
+<rect x="34" y="32" width="6" height="6" rx="1" fill="#FDCB6E" fill-opacity="0.5"/>
+<text x="24" y="20" text-anchor="middle" fill="#FDCB6E" font-size="8" font-weight="bold">CAL</text>
+</svg>

@@ -39,24 +39,23 @@ class StartMenuManager {
     
     showShutdownDialog() {
         this.shutdownDialog.classList.remove('hidden');
+        setTimeout(() => this.shutdownDialog.classList.add('visible'), 10);
     }
     
     hideShutdownDialog() {
-        this.shutdownDialog.classList.add('hidden');
+        this.shutdownDialog.classList.remove('visible');
+        setTimeout(() => this.shutdownDialog.classList.add('hidden'), 300);
     }
     
     handleShutdownAction(action) {
         switch (action) {
             case 'standby':
-                // Simulate standby
                 this.hideShutdownDialog();
                 break;
             case 'shutdown':
-                // Simulate shutdown - go back to boot screen
                 this.performShutdown();
                 break;
             case 'restart':
-                // Simulate restart
                 this.performRestart();
                 break;
         }
@@ -69,17 +68,14 @@ class StartMenuManager {
         desktop.classList.add('hidden');
         bootScreen.classList.remove('hidden');
         
-        // Reset to initial state after delay
         setTimeout(() => {
             this.hideShutdownDialog();
-            // In a real implementation, you might want to reset the entire OS state
         }, 2000);
     }
     
     performRestart() {
         this.performShutdown();
         
-        // Simulate restart by showing boot screen then login
         setTimeout(() => {
             const bootScreen = document.getElementById('boot-screen');
             const loginScreen = document.getElementById('login-screen');
