@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows XP Web OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/xp.css">
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="boot-screen" class="screen">
+        <div class="boot-container">
+            <div class="boot-logo">
+                <div class="xp-logo">
+                    <div class="xp-window"></div>
+                    <div class="xp-text">Microsoft Windows XP</div>
+                </div>
+            </div>
+            <div class="boot-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen hidden">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="xp-logo-small">
+                    <div class="xp-window-small"></div>
+                </div>
+                <h1>Windows XP</h1>
+            </div>
+            <div class="login-form">
+                <div class="user-icon"></div>
+                <div class="login-inputs">
+                    <input type="text" id="username" placeholder="Username" value="Guest">
+                    <input type="password" id="password" placeholder="Password">
+                    <button id="login-btn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop -->
+    <div id="desktop" class="screen hidden">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-app="explorer">
+                <div class="icon my-computer"></div>
+                <span>My Computer</span>
+            </div>
+            <div class="desktop-icon" data-app="explorer">
+                <div class="icon my-documents"></div>
+                <span>My Documents</span>
+            </div>
+            <div class="desktop-icon" data-app="notepad">
+                <div class="icon notepad"></div>
+                <span>Notepad</span>
+            </div>
+            <div class="desktop-icon" data-app="browser">
+                <div class="icon browser"></div>
+                <span>Internet Explorer</span>
+            </div>
+            <div class="desktop-icon" data-app="imageviewer">
+                <div class="icon image-viewer"></div>
+                <span>Image Viewer</span>
+            </div>
+            <div class="desktop-icon" data-app="recycle-bin">
+                <div class="icon recycle-bin"></div>
+                <span>Recycle Bin</span>
+            </div>
+        </div>
+
+        <!-- Windows Container -->
+        <div id="windows-container"></div>
+
+        <!-- Context Menu -->
+        <div id="context-menu" class="context-menu hidden">
+            <div class="context-item">View</div>
+            <div class="context-item">Arrange Icons By</div>
+            <div class="context-separator"></div>
+            <div class="context-item">Refresh</div>
+            <div class="context-separator"></div>
+            <div class="context-item">Paste</div>
+            <div class="context-item">Paste Shortcut</div>
+            <div class="context-separator"></div>
+            <div class="context-item">New</div>
+            <div class="context-separator"></div>
+            <div class="context-item">Properties</div>
+        </div>
+
+        <!-- Taskbar -->
+        <div id="taskbar">
+            <div id="start-button" class="start-button">
+                <div class="start-icon"></div>
+                <span>Start</span>
+            </div>
+            <div id="quick-launch" class="quick-launch">
+                <div class="quick-icon explorer" data-app="explorer"></div>
+                <div class="quick-icon browser" data-app="browser"></div>
+                <div class="quick-icon notepad" data-app="notepad"></div>
+            </div>
+            <div id="taskbar-apps" class="taskbar-apps"></div>
+            <div id="system-tray" class="system-tray">
+                <div class="tray-icons">
+                    <div class="tray-icon volume"></div>
+                    <div class="tray-icon network"></div>
+                </div>
+                <div id="clock" class="clock">12:00 PM</div>
+            </div>
+        </div>
+
+        <!-- Start Menu -->
+        <div id="start-menu" class="start-menu hidden">
+            <div class="start-menu-header">
+                <div class="user-picture"></div>
+                <div class="user-name">Guest</div>
+            </div>
+            <div class="start-menu-left">
+                <div class="start-menu-item" data-app="explorer">
+                    <div class="menu-icon my-computer"></div>
+                    <span>My Computer</span>
+                </div>
+                <div class="start-menu-item" data-app="explorer">
+                    <div class="menu-icon my-documents"></div>
+                    <span>My Documents</span>
+                </div>
+                <div class="start-menu-item" data-app="notepad">
+                    <div class="menu-icon notepad"></div>
+                    <span>Notepad</span>
+                </div>
+                <div class="start-menu-item" data-app="browser">
+                    <div class="menu-icon browser"></div>
+                    <span>Internet Explorer</span>
+                </div>
+                <div class="start-menu-item" data-app="imageviewer">
+                    <div class="menu-icon image-viewer"></div>
+                    <span>Image Viewer</span>
+                </div>
+            </div>
+            <div class="start-menu-right">
+                <div class="start-menu-section">
+                    <div class="start-menu-item">
+                        <div class="menu-icon control-panel"></div>
+                        <span>Control Panel</span>
+                    </div>
+                    <div class="start-menu-item">
+                        <div class="menu-icon printers"></div>
+                        <span>Printers and Faxes</span>
+                    </div>
+                    <div class="start-menu-item">
+                        <div class="menu-icon help"></div>
+                        <span>Help and Support</span>
+                    </div>
+                    <div class="start-menu-item">
+                        <div class="menu-icon search"></div>
+                        <span>Search</span>
+                    </div>
+                    <div class="start-menu-item">
+                        <div class="menu-icon run"></div>
+                        <span>Run...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="start-menu-footer">
+                <div class="start-menu-item shutdown">
+                    <div class="menu-icon shutdown"></div>
+                    <span>Turn Off Computer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shutdown Dialog -->
+    <div id="shutdown-dialog" class="dialog hidden">
+        <div class="dialog-title">Turn off computer</div>
+        <div class="dialog-content">
+            <div class="shutdown-options">
+                <div class="shutdown-option" data-action="standby">
+                    <div class="option-icon standby"></div>
+                    <span>Stand By</span>
+                </div>
+                <div class="shutdown-option" data-action="shutdown">
+                    <div class="option-icon shutdown"></div>
+                    <span>Turn Off</span>
+                </div>
+                <div class="shutdown-option" data-action="restart">
+                    <div class="option-icon restart"></div>
+                    <span>Restart</span>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-buttons">
+            <button class="dialog-button cancel">Cancel</button>
+        </div>
+    </div>
+
+    <script src="system/windowManager.js"></script>
+    <script src="system/taskbar.js"></script>
+    <script src="system/startMenu.js"></script>
+    <script src="apps/notepad.js"></script>
+    <script src="apps/explorer.js"></script>
+    <script src="apps/browser.js"></script>
+    <script src="apps/imageviewer.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* Windows XP Specific Styles */
+
+/* XP Button Styles */
+.xp-button {
+    background: linear-gradient(to bottom, #ece9d8, #d6d3c4);
+    border: 1px solid #003399;
+    border-radius: 3px;
+    padding: 4px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #000;
+}
+
+.xp-button:hover {
+    background: linear-gradient(to bottom, #f6f3e2, #e6e3d4);
+}
+
+.xp-button:active {
+    background: linear-gradient(to bottom, #d6d3c4, #c6c3b4);
+}
+
+.xp-button.primary {
+    background: linear-gradient(to bottom, #5b9c36, #3a6b1f);
+    color: white;
+    border-color: #2d5118;
+}
+
+.xp-button.primary:hover {
+    background: linear-gradient(to bottom, #6bac41, #4a7b29);
+}
+
+/* XP Scrollbar */
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ece9d8;
+    border: 1px solid #c6c3b4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #d6d3c4, #c6c3b4);
+    border: 1px solid #003399;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #e6e3d4, #d6d3c4);
+}
+
+::-webkit-scrollbar-button {
+    background: #ece9d8;
+    border: 1px solid #c6c3b4;
+}
+
+/* XP Input Styles */
+.xp-input {
+    background: white;
+    border: 1px solid #003399;
+    border-radius: 3px;
+    padding: 4px 6px;
+    font-size: 11px;
+}
+
+.xp-input:focus {
+    outline: none;
+    border-color: #316ac5;
+    box-shadow: 0 0 3px rgba(49, 106, 197, 0.5);
+}
+
+/* XP Menu Styles */
+.xp-menu {
+    background: #ece9d8;
+    border: 1px solid #003399;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.xp-menu-item {
+    padding: 5px 20px 5px 30px;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+}
+
+.xp-menu-item:hover {
+    background: #316ac5;
+    color: white;
+}
+
+.xp-menu-separator {
+    height: 1px;
+    background: #ccc;
+    margin: 2px 0;
+}
+
+/* XP Titlebar Gradient */
+.xp-titlebar {
+    background: linear-gradient(to bottom, #0a246a, #316ac5);
+}
+
+/* XP Taskbar Gradient */
+.xp-taskbar {
+    background: linear-gradient(to bottom, #316ac5, #1e4b8f);
+}
+
+/* XP Start Menu Gradient */
+.xp-start-menu {
+    background: linear-gradient(to right, #e2a667, #d18c42);
+}
+
+/* XP Window Shadows */
+.xp-window-shadow {
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+}
+
+/* XP Progress Bar */
+.xp-progress {
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.xp-progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #ffd700, #ff8c00);
+    transition: width 0.1s ease;
+}
+
+/* XP Icon Styles */
+.xp-icon {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.xp-icon-small {
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* XP Selection Colors */
+::selection {
+    background: #316ac5;
+    color: white;
+}
+
+::-moz-selection {
+    background: #316ac5;
+    color: white;
+}
