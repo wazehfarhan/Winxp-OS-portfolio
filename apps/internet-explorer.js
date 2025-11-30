@@ -89,7 +89,7 @@ class InternetExplorerApp {
                 content.innerHTML = `
                     <div class="browser-placeholder">
                         <h2>GitHub Profile</h2>
-                        <p><strong>Username:</strong> w2zfrhn</p>
+                        <p><strong>Username:</strong> wazehfarhan</p>
                         <div style="margin: 20px 0;">
                             <h4>Featured Projects:</h4>
                             <ul style="text-align: left; margin: 10px 0;">
