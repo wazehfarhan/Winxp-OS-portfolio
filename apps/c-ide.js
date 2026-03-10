@@ -1,6 +1,6 @@
 class CIdeApp {
-    static launch(windowManager) {
-        const content = `
+  static launch(windowManager) {
+    const content = `
             <div class="c-ide-app" style="height: 100%; display: flex; flex-direction: column; background: #1e1e1e; color: #d4d4d4; font-family: 'Consolas', 'Courier New', monospace;">
                 <!-- Toolbar -->
                 <div class="ide-toolbar" style="background: #2d2d2d; padding: 8px 12px; border-bottom: 1px solid #3c3c3c; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
@@ -30,7 +30,7 @@ class CIdeApp {
                                 1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
                             </div>
                         </div>
-                        <textarea id="code-editor" spellcheck="false" wrap="off" style="flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; resize: none; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; padding: 10px; outline: none; line-height: 1.6; white-space: pre; overflow: auto;">#include &lt;stdio.h&gt;
+                        <textarea id="code-editor" spellcheck="false" wrap="off" style="flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; resize: none; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; padding: 10px; outline: none; line-height: 1.6; white-space: pre; overflow: auto;">#include <stdio.h>
 
 int main() {
     int number = 10;
@@ -63,40 +63,40 @@ int main() {
                 </div>
             </div>
         `;
-        
-        const windowObj = windowManager.createWindow(
-            'c-ide',
-            'C IDE - Variable-Aware Version',
-            content,
-            {
-                width: 800,
-                height: 600,
-                minWidth: 600,
-                minHeight: 500
-            }
-        );
-        
-        // Get elements
-        const editor = windowObj.element.querySelector('#code-editor');
-        const terminal = windowObj.element.querySelector('#terminal');
-        const runBtn = windowObj.element.querySelector('#run-btn');
-        const clearBtn = windowObj.element.querySelector('#clear-btn');
-        const templateSelect = windowObj.element.querySelector('#template-select');
-        const lineNumbersDiv = windowObj.element.querySelector('#line-numbers');
-        const lineCountSpan = windowObj.element.querySelector('#line-count');
-        const fileSizeSpan = windowObj.element.querySelector('#file-size');
-        
-        // Templates
-        const templates = {
-            basic: `#include <stdio.h>
+
+    const windowObj = windowManager.createWindow(
+      "c-ide",
+      "C IDE - Variable-Aware Version",
+      content,
+      {
+        width: 800,
+        height: 600,
+        minWidth: 600,
+        minHeight: 500,
+      },
+    );
+
+    // Get elements
+    const editor = windowObj.element.querySelector("#code-editor");
+    const terminal = windowObj.element.querySelector("#terminal");
+    const runBtn = windowObj.element.querySelector("#run-btn");
+    const clearBtn = windowObj.element.querySelector("#clear-btn");
+    const templateSelect = windowObj.element.querySelector("#template-select");
+    const lineNumbersDiv = windowObj.element.querySelector("#line-numbers");
+    const lineCountSpan = windowObj.element.querySelector("#line-count");
+    const fileSizeSpan = windowObj.element.querySelector("#file-size");
+
+    // Templates
+    const templates = {
+      basic: `#include <stdio.h>
 
 int main() {
     int number = 10;
     printf("The answer is %d\\n", number);
     return 0;
 }`,
-            
-            variables: `#include <stdio.h>
+
+      variables: `#include <stdio.h>
 
 int main() {
     int a = 5;
@@ -109,8 +109,8 @@ int main() {
     
     return 0;
 }`,
-            
-            arithmetic: `#include <stdio.h>
+
+      arithmetic: `#include <stdio.h>
 
 int main() {
     int x = 15;
@@ -124,8 +124,8 @@ int main() {
     
     return 0;
 }`,
-            
-            conditions: `#include <stdio.h>
+
+      conditions: `#include <stdio.h>
 
 int main() {
     int age = 18;
@@ -138,8 +138,8 @@ int main() {
     
     return 0;
 }`,
-            
-            loops: `#include <stdio.h>
+
+      loops: `#include <stdio.h>
 
 int main() {
     int count = 5;
@@ -151,276 +151,463 @@ int main() {
     printf("\\n");
     
     return 0;
-}`
-        };
-        
-        // Function to update line numbers
-        function updateLineNumbers() {
-            const lines = editor.value.split('\n');
-            const lineCount = lines.length;
-            
-            let lineNumbersHtml = '';
-            for(let i = 1; i <= lineCount; i++) {
-                lineNumbersHtml += i + '<br>';
-            }
-            lineNumbersDiv.innerHTML = lineNumbersHtml;
-            
-            // Calculate cursor position
-            const cursorPos = editor.selectionStart;
-            const textBeforeCursor = editor.value.substring(0, cursorPos);
-            const linesBeforeCursor = (textBeforeCursor.match(/\n/g) || []).length;
-            const currentLine = linesBeforeCursor + 1;
-            
-            const lastNewLine = textBeforeCursor.lastIndexOf('\n');
-            const currentCol = lastNewLine === -1 ? cursorPos + 1 : cursorPos - lastNewLine;
-            
-            lineCountSpan.textContent = `Ln ${currentLine}, Col ${currentCol}`;
-            
-            const sizeInBytes = new Blob([editor.value]).size;
-            fileSizeSpan.textContent = `${(sizeInBytes / 1024).toFixed(2)} KB`;
-            
-            lineNumbersDiv.style.top = `-${editor.scrollTop}px`;
-        }
-        
-        // Initialize
+}`,
+    };
+
+    // Function to update line numbers
+    function updateLineNumbers() {
+      const lines = editor.value.split("\n");
+      const lineCount = lines.length;
+
+      let lineNumbersHtml = "";
+      for (let i = 1; i <= lineCount; i++) {
+        lineNumbersHtml += i + (i < lineCount ? "<br>" : "");
+      }
+      lineNumbersDiv.innerHTML = lineNumbersHtml;
+
+      // Calculate cursor position
+      const cursorPos = editor.selectionStart;
+      const textBeforeCursor = editor.value.substring(0, cursorPos);
+      const linesBeforeCursor = (textBeforeCursor.match(/\n/g) || []).length;
+      const currentLine = linesBeforeCursor + 1;
+
+      const lastNewLine = textBeforeCursor.lastIndexOf("\n");
+      const currentCol =
+        lastNewLine === -1 ? cursorPos + 1 : cursorPos - lastNewLine;
+
+      lineCountSpan.textContent = `Ln ${currentLine}, Col ${currentCol}`;
+
+      const sizeInBytes = new Blob([editor.value]).size;
+      fileSizeSpan.textContent = `${(sizeInBytes / 1024).toFixed(2)} KB`;
+
+      // Fixed: proper line numbers scrolling using transform
+      lineNumbersDiv.style.transform = `translateY(-${editor.scrollTop}px)`;
+    }
+
+    // Initialize
+    updateLineNumbers();
+
+    // Editor events
+    editor.addEventListener("input", updateLineNumbers);
+    editor.addEventListener("scroll", () => {
+      lineNumbersDiv.style.transform = `translateY(-${editor.scrollTop}px)`;
+    });
+    editor.addEventListener("click", updateLineNumbers);
+    editor.addEventListener("keyup", updateLineNumbers);
+
+    // Tab key
+    editor.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const start = editor.selectionStart;
+        const end = editor.selectionEnd;
+        editor.value =
+          editor.value.substring(0, start) +
+          "    " +
+          editor.value.substring(end);
+        editor.selectionStart = editor.selectionEnd = start + 4;
         updateLineNumbers();
-        
-        // Editor events
-        editor.addEventListener('input', updateLineNumbers);
-        editor.addEventListener('scroll', () => {
-            lineNumbersDiv.style.top = `-${editor.scrollTop}px`;
-        });
-        editor.addEventListener('click', updateLineNumbers);
-        editor.addEventListener('keyup', updateLineNumbers);
-        
-        // Tab key
-        editor.addEventListener('keydown', (e) => {
-            if(e.key === 'Tab') {
-                e.preventDefault();
-                const start = editor.selectionStart;
-                const end = editor.selectionEnd;
-                editor.value = editor.value.substring(0, start) + '    ' + editor.value.substring(end);
-                editor.selectionStart = editor.selectionEnd = start + 4;
-                updateLineNumbers();
+      }
+
+      if (e.key === "Enter" && e.ctrlKey) {
+        e.preventDefault();
+        runBtn.click();
+      }
+    });
+
+    // Template change
+    templateSelect.addEventListener("change", () => {
+      const template = templates[templateSelect.value];
+      if (template) {
+        editor.value = template;
+        updateLineNumbers();
+        appendToTerminal(
+          `w2zfrhn@root:~# <span style="color: #6a9955;">Loaded template: ${templateSelect.options[templateSelect.selectedIndex].text}</span>`,
+        );
+      }
+    });
+
+    // Terminal append
+    function appendToTerminal(text) {
+      const lineDiv = document.createElement("div");
+      lineDiv.style.marginBottom = "2px";
+      lineDiv.style.wordBreak = "break-all";
+      lineDiv.style.fontFamily = "'Consolas', monospace";
+      lineDiv.style.fontSize = "13px";
+      lineDiv.innerHTML = text;
+      terminal.appendChild(lineDiv);
+      terminal.scrollTop = terminal.scrollHeight;
+
+      while (terminal.children.length > 100) {
+        terminal.removeChild(terminal.firstChild);
+      }
+    }
+
+    // Parse and execute C code natively in JS
+    function parseCCode(code) {
+      let outputs = [];
+      let currentLine = "";
+
+      // Simulates C printf - FIXED: escape sequences and format specifiers
+      function __printf(format, ...args) {
+        let result = "";
+        let argIndex = 0;
+        let i = 0;
+
+        // Process escape sequences first
+        format = format
+          .replace(/\\n/g, "\n")
+          .replace(/\\t/g, "\t")
+          .replace(/\\\\/g, "\\");
+
+        while (i < format.length) {
+          if (format[i] === "%" && i + 1 < format.length) {
+            const specifier = format[i + 1];
+            if (["d", "i", "f", "c", "s", "u", "x"].includes(specifier)) {
+              if (argIndex < args.length) {
+                let arg = args[argIndex];
+                if (specifier === "d" || specifier === "i") {
+                  // Integer
+                  result += Math.floor(Number(arg));
+                } else if (specifier === "f") {
+                  // Float - properly format
+                  result += parseFloat(arg)
+                    .toFixed(6)
+                    .replace(/\.?0+$/, "");
+                } else if (specifier === "c") {
+                  // Character
+                  result += String(arg).charAt(0);
+                } else if (specifier === "s") {
+                  // String
+                  result += String(arg);
+                } else if (specifier === "u") {
+                  // Unsigned
+                  result += Math.abs(Math.floor(Number(arg)));
+                } else if (specifier === "x") {
+                  // Hexadecimal
+                  result += Math.abs(Math.floor(Number(arg))).toString(16);
+                }
+                argIndex++;
+              }
+              i += 2;
+            } else if (specifier === "%") {
+              result += "%";
+              i += 2;
+            } else {
+              result += format[i];
+              i++;
             }
-            
-            if(e.key === 'Enter' && e.ctrlKey) {
-                e.preventDefault();
-                runBtn.click();
-            }
-        });
-        
-        // Template change
-        templateSelect.addEventListener('change', () => {
-            const template = templates[templateSelect.value];
-            if(template) {
-                editor.value = template;
-                updateLineNumbers();
-                appendToTerminal(`w2zfrhn@root:~# <span style="color: #6a9955;">Loaded template: ${templateSelect.options[templateSelect.selectedIndex].text}</span>`);
-            }
-        });
-        
-        // Terminal append
-        function appendToTerminal(text) {
-            const lineDiv = document.createElement('div');
-            lineDiv.style.marginBottom = '2px';
-            lineDiv.style.wordBreak = 'break-all';
-            lineDiv.style.fontFamily = "'Consolas', monospace";
-            lineDiv.style.fontSize = '13px';
-            lineDiv.innerHTML = text;
-            terminal.appendChild(lineDiv);
-            terminal.scrollTop = terminal.scrollHeight;
-            
-            while(terminal.children.length > 100) {
-                terminal.removeChild(terminal.firstChild);
-            }
+          } else {
+            result += format[i];
+            i++;
+          }
         }
-        
-        // Parse and execute C code natively in JS
-        function parseCCode(code) {
-            let outputs = [];
-            let currentLine = "";
-            
-            // Simulates C printf
-            function __printf(format, ...args) {
-                let result = '';
-                let argIndex = 0;
-                let i = 0;
-                
-                while(i < format.length) {
-                    if(format[i] === '%' && i + 1 < format.length) {
-                        const specifier = format[i + 1];
-                        if(['d', 'i', 'f', 'c', 's'].includes(specifier)) {
-                            if(argIndex < args.length) {
-                                result += args[argIndex];
-                                argIndex++;
-                            }
-                            i += 2;
-                        } else if(specifier === '%') {
-                            result += '%';
-                            i += 2;
-                        } else {
-                            result += format[i];
-                            i++;
-                        }
-                    } else {
-                        result += format[i];
-                        i++;
-                    }
-                }
-                
-                // Track newlines to emit distinct lines
-                for (let char of result) {
-                    if (char === '\n') {
-                        outputs.push(currentLine);
-                        currentLine = "";
-                    } else {
-                        currentLine += char;
-                    }
-                }
-            }
-            
-            try {
-                // Transpile C to JS
-                let jsCode = code;
-                
-                // Remove preprocessor directives
-                jsCode = jsCode.replace(/#include.*$/gm, '');
-                
-                // Handle main function signature
-                jsCode = jsCode.replace(/(int|void)\s+main\s*\([^\)]*\)\s*\{/g, 'function main() {');
-                
-                // Replace basic types with let
-                jsCode = jsCode.replace(/\b(int|float|double|char|long|short|bool)\b/g, 'let');
-                
-                // Create execution environment
-                const execWrapper = `
+
+        // Track newlines to emit distinct lines
+        for (let char of result) {
+          if (char === "\n") {
+            outputs.push(currentLine);
+            currentLine = "";
+          } else {
+            currentLine += char;
+          }
+        }
+      }
+
+      try {
+        // Transpile C to JS
+        let jsCode = code;
+
+        // Remove preprocessor directives
+        jsCode = jsCode.replace(/#include.*$/gm, "");
+
+        // Handle main function signature
+        jsCode = jsCode.replace(
+          /(int|void)\s+main\s*\([^\)]*\)\s*\{/g,
+          "function main() {",
+        );
+
+        // Replace float/double with var (to support floating point)
+        jsCode = jsCode.replace(/\bfloat\b/g, "var");
+        jsCode = jsCode.replace(/\bdouble\b/g, "var");
+        // Replace int, char, long, short with let
+        jsCode = jsCode.replace(/\b(int|char|long|short|bool)\b/g, "let");
+
+        // Create execution environment
+        const execWrapper =
+          `
                     (function() {
                         const printf = __printf;
-                        ` + jsCode + `
+                        ` +
+          jsCode +
+          `
                         if (typeof main === 'function') {
                             return main();
                         }
                     })();
                 `;
-                
-                eval(execWrapper);
-                
-                // Push any remaining output that didn't end with newline
-                if (currentLine !== "") {
-                    outputs.push(currentLine);
-                }
-                
-                return outputs;
-            } catch (e) {
-                return ["<span style='color:#f48771;'>Runtime Error: " + e.message + "</span>"];
-            }
+
+        eval(execWrapper);
+
+        // Push any remaining output that didn't end with newline
+        if (currentLine !== "") {
+          outputs.push(currentLine);
         }
-        
-        // Run button
-        runBtn.addEventListener('click', () => {
-            const code = editor.value;
-            
-            appendToTerminal(`<span style="color: #6a9955;">w2zfrhn@root:~# gcc program.c -o program</span>`);
-            
-            // Simple error checking
-            let hasError = false;
-            
-            if(!code.includes('main(')) {
-                appendToTerminal(`<span style="color: #f48771;">error: undefined reference to 'main'</span>`);
-                hasError = true;
+
+        return outputs;
+      } catch (e) {
+        let lineStr = "";
+        let codeLine = "";
+        if (e.stack) {
+          const match =
+            e.stack.match(/<anonymous>:(\d+)/) || e.stack.match(/eval.*:(\d+)/);
+          if (match) {
+            const lineNum = parseInt(match[1]) - 3;
+            if (lineNum > 0) {
+              lineStr = ` at line ${lineNum}`;
+              const lines = code.split("\n");
+              if (lineNum <= lines.length) {
+                codeLine = lines[lineNum - 1].trim();
+              }
             }
-            
-            // Check for missing semicolons
-            const lines = code.split('\n');
-            for(let i = 0; i < lines.length; i++) {
-                // Ignore comments for syntax checking
-                let lineStr = lines[i].split('//')[0].trim();
-                
-                if(lineStr && !lineStr.startsWith('#') && !lineStr.endsWith('{') && !lineStr.endsWith('}') && !lineStr.startsWith('if') && !lineStr.startsWith('for') && !lineStr.startsWith('while')) {
-                    if(!lineStr.endsWith(';')) {
-                        // Check if it's an assignment, print, return, or declaration
-                        if (lineStr.includes('printf') || lineStr.includes('return') || lineStr.includes('=') || lineStr.match(/^(int|float|double|char)\s+/)) {
-                            appendToTerminal(`<span style="color: #f48771;">error: expected ';' before end of line (line ${i + 1})</span>`);
-                            hasError = true;
-                        }
-                    }
-                }
+          }
+        }
+
+        if (!lineStr && e.lineNumber) {
+          const lineNum = parseInt(e.lineNumber) - 3;
+          if (lineNum > 0) {
+            lineStr = ` at line ${lineNum}`;
+            const lines = code.split("\n");
+            if (lineNum <= lines.length) {
+              codeLine = lines[lineNum - 1].trim();
             }
-            
-            if(hasError) {
-                appendToTerminal(`<span style="color: #f48771;">compilation terminated</span>`);
-            } else {
-                appendToTerminal(`<span style="color: #6a9955;">Compilation successful</span>`);
-                appendToTerminal(`<span style="color: #6a9955;">w2zfrhn@root:~# ./program</span>`);
-                
-                // Parse and execute the code
-                setTimeout(() => {
-                    const returnedOutputs = parseCCode(code);
-                    
-                    if(returnedOutputs.length > 0) {
-                        returnedOutputs.forEach(line => {
-                            appendToTerminal(`<span style="color: #9cdcfe;">${line || '&nbsp;'}</span>`);
-                        });
-                    } else {
-                        appendToTerminal(`<span style="color: #ffaa00;">Program executed (no output)</span>`);
-                    }
-                    
-                    appendToTerminal(`<span style="color: #6a9955;">Program exited with code: 0</span>`);
-                }, 500);
-            }
-        });
-        
-        // Clear terminal
-        clearBtn.addEventListener('click', () => {
-            terminal.innerHTML = '';
-            appendToTerminal('w2zfrhn@root:~# <span style="color: #6a9955;">Terminal cleared</span>');
-        });
-        
-        // Splitter functionality
-        const splitter = windowObj.element.querySelector('#splitter');
-        const editorContainer = windowObj.element.querySelector('#editor-container');
-        const terminalContainer = windowObj.element.querySelector('#terminal-container');
-        let isDragging = false;
-        
-        splitter.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            splitter.style.background = '#6a9955';
-            document.body.style.cursor = 'ns-resize';
-            document.body.style.userSelect = 'none';
-        });
-        
-        document.addEventListener('mousemove', (e) => {
-            if(!isDragging) return;
-            
-            const container = windowObj.element.querySelector('#main-container');
-            const containerRect = container.getBoundingClientRect();
-            const mouseY = e.clientY - containerRect.top;
-            
-            const containerHeight = containerRect.height;
-            const splitterHeight = 4;
-            
-            let terminalHeight = containerHeight - mouseY;
-            terminalHeight = Math.max(100, Math.min(terminalHeight, containerHeight - 100));
-            
-            editorContainer.style.flex = 'none';
-            editorContainer.style.height = (containerHeight - terminalHeight - splitterHeight) + 'px';
-            terminalContainer.style.height = terminalHeight + 'px';
-        });
-        
-        document.addEventListener('mouseup', () => {
-            if(isDragging) {
-                isDragging = false;
-                splitter.style.background = '#3c3c3c';
-                document.body.style.cursor = 'default';
-                document.body.style.userSelect = 'auto';
-            }
-        });
-        
-        // Initialize
-        appendToTerminal('w2zfrhn@root:~# <span style="color: #6a9955;">Welcome to C IDE - Variable-Aware Version</span>');
-        appendToTerminal('w2zfrhn@root:~# <span style="color: #6a9955;">Variables are now tracked correctly!</span>');
-        
-        return windowObj;
+          }
+        }
+
+        let finalErrorMsg =
+          "<span style='color:#f48771;'>Runtime Error: " +
+          e.message +
+          lineStr +
+          "</span>";
+        if (codeLine) {
+          finalErrorMsg +=
+            "<br><span style='color:#f48771; opacity: 0.8;'>> " +
+            codeLine +
+            "</span>";
+        }
+
+        return [finalErrorMsg];
+      }
     }
+
+    // Run button
+    runBtn.addEventListener("click", () => {
+      const code = editor.value;
+
+      appendToTerminal(
+        `<span style="color: #6a9955;">w2zfrhn@root:~# gcc program.c -o program</span>`,
+      );
+
+      // Simple error checking - FIXED: complete semicolon detection
+      let hasError = false;
+
+      if (!code.includes("main(")) {
+        appendToTerminal(
+          `<span style="color: #f48771;">error: undefined reference to 'main'</span>`,
+        );
+        hasError = true;
+      }
+
+      // Check for missing semicolons - improved detection
+      const lines = code.split("\n");
+      for (let i = 0; i < lines.length; i++) {
+        // Ignore comments for syntax checking
+        let lineStr = lines[i].split("//")[0].trim();
+
+        // Skip preprocessor, braces, keywords that don't need semicolons
+        if (
+          lineStr &&
+          !lineStr.startsWith("#") &&
+          !lineStr.endsWith("{") &&
+          !lineStr.endsWith("}") &&
+          !lineStr.startsWith("if") &&
+          !lineStr.startsWith("for") &&
+          !lineStr.startsWith("while") &&
+          !lineStr.startsWith("else") &&
+          !lineStr.startsWith("do")
+        ) {
+          if (!lineStr.endsWith(";")) {
+            // Check if it's an assignment, print, return, or declaration
+            if (
+              lineStr.includes("printf") ||
+              lineStr.includes("return") ||
+              lineStr.includes("=") ||
+              lineStr.match(
+                /^(int|float|double|char|long|short|bool|let|var)\s+/,
+              )
+            ) {
+              appendToTerminal(
+                `<span style="color: #f48771;">error: expected ';' before end of line (line ${i + 1})</span>`,
+              );
+              appendToTerminal(
+                `<span style="color: #f48771; opacity: 0.8;">> ${lines[i].trim()}</span>`,
+              );
+              hasError = true;
+            }
+          }
+        }
+      }
+
+      // Try to catch JS syntax errors as compile errors
+      if (!hasError) {
+        try {
+          let jsCode = code;
+          jsCode = jsCode.replace(/#include.*$/gm, "");
+          jsCode = jsCode.replace(
+            /(int|void)\s+main\s*\([^\)]*\)\s*\{/g,
+            "function main() {",
+          );
+          jsCode = jsCode.replace(/\b(float|double)\b/g, "var");
+          jsCode = jsCode.replace(/\b(int|char|long|short|bool)\b/g, "let");
+
+          // Only check syntax, do not execute
+          new Function(jsCode);
+        } catch (e) {
+          if (e instanceof SyntaxError) {
+            let lineStr = "";
+            let codeLine = "";
+            if (e.stack) {
+              const match =
+                e.stack.match(/<anonymous>:(\d+)/) ||
+                e.stack.match(/eval.*:(\d+)/);
+              if (match) {
+                const lineNum = parseInt(match[1]) - 2; // new Function adds 2 wrapper lines
+                if (lineNum > 0) {
+                  lineStr = ` (line ${lineNum})`;
+                  if (lineNum <= lines.length)
+                    codeLine = lines[lineNum - 1].trim();
+                }
+              }
+            }
+            if (!lineStr && e.lineNumber) {
+              const lineNum = parseInt(e.lineNumber) - 2;
+              if (lineNum > 0) {
+                lineStr = ` (line ${lineNum})`;
+                if (lineNum <= lines.length)
+                  codeLine = lines[lineNum - 1].trim();
+              }
+            }
+            appendToTerminal(
+              `<span style="color: #f48771;">error: ${e.message}${lineStr}</span>`,
+            );
+            if (codeLine)
+              appendToTerminal(
+                `<span style="color: #f48771; opacity: 0.8;">> ${codeLine}</span>`,
+              );
+            hasError = true;
+          }
+        }
+      }
+
+      if (hasError) {
+        appendToTerminal(
+          `<span style="color: #f48771;">compilation terminated</span>`,
+        );
+      } else {
+        appendToTerminal(
+          `<span style="color: #6a9955;">Compilation successful</span>`,
+        );
+        appendToTerminal(
+          `<span style="color: #6a9955;">w2zfrhn@root:~# ./program</span>`,
+        );
+
+        // Parse and execute the code
+        setTimeout(() => {
+          const returnedOutputs = parseCCode(code);
+
+          if (returnedOutputs.length > 0) {
+            returnedOutputs.forEach((line) => {
+              appendToTerminal(
+                `<span style="color: #9cdcfe;">${line || "&nbsp;"}</span>`,
+              );
+            });
+          } else {
+            appendToTerminal(
+              `<span style="color: #ffaa00;">Program executed (no output)</span>`,
+            );
+          }
+
+          appendToTerminal(
+            `<span style="color: #6a9955;">Program exited with code: 0</span>`,
+          );
+        }, 500);
+      }
+    });
+
+    // Clear terminal
+    clearBtn.addEventListener("click", () => {
+      terminal.innerHTML = "";
+      appendToTerminal(
+        'w2zfrhn@root:~# <span style="color: #6a9955;">Terminal cleared</span>',
+      );
+    });
+
+    // Splitter functionality - FIXED: proper event handling
+    const splitter = windowObj.element.querySelector("#splitter");
+    const editorContainer =
+      windowObj.element.querySelector("#editor-container");
+    const terminalContainer = windowObj.element.querySelector(
+      "#terminal-container",
+    );
+    let isDragging = false;
+
+    splitter.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      splitter.style.background = "#6a9955";
+      document.body.style.cursor = "ns-resize";
+      document.body.style.userSelect = "none";
+      e.preventDefault();
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+
+      const container = windowObj.element.querySelector("#main-container");
+      const containerRect = container.getBoundingClientRect();
+      const mouseY = e.clientY - containerRect.top;
+
+      const containerHeight = containerRect.height;
+      const splitterHeight = 4;
+
+      let terminalHeight = containerHeight - mouseY;
+      terminalHeight = Math.max(
+        100,
+        Math.min(terminalHeight, containerHeight - 100),
+      );
+
+      editorContainer.style.flex = "none";
+      editorContainer.style.height =
+        containerHeight - terminalHeight - splitterHeight + "px";
+      terminalContainer.style.height = terminalHeight + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+      if (isDragging) {
+        isDragging = false;
+        splitter.style.background = "#3c3c3c";
+        document.body.style.cursor = "default";
+        document.body.style.userSelect = "auto";
+      }
+    });
+
+    // Initialize
+    appendToTerminal(
+      'w2zfrhn@root:~# <span style="color: #6a9955;">Welcome to C IDE - Variable-Aware Version</span>',
+    );
+    appendToTerminal(
+      'w2zfrhn@root:~# <span style="color: #6a9955;">Variables are now tracked correctly!</span>',
+    );
+
+    return windowObj;
+  }
 }
