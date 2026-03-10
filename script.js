@@ -10,84 +10,69 @@ class WindowsXPWebOS {
         // Initialize boot sequence
         this.startBootSequence();
         
-        // Set up login
-        document.getElementById('login-btn').addEventListener('click', () => {
-            this.login();
-        });
-        
-        // Allow login with Enter key
-        document.getElementById('password').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.login();
-            }
-        });
-        
         // Set up desktop interactions
         this.setupDesktop();
     }
     
     startBootSequence() {
-        const progressFill = document.querySelector('.progress-fill');
-        let progress = 0;
+        const terminal = document.getElementById('boot-terminal');
+        const bootMessages = [
+            "Initializing Linux kernel v5.15.0-generic...",
+            "Loading core components... [ OK ]",
+            "Mounting virtual file systems... [ OK ]",
+            "Checking disk quotas... [ OK ]",
+            "Starting system message bus... [ OK ]",
+            "Starting network manager... [ OK ]",
+            "Connecting to w2zfrhn interface... [ OK ]",
+            "Configuring routing tables... [ OK ]",
+            "Establishing secure proxy tunnel... [ OK ]",
+            "Initializing cryptosystem modules... [ OK ]",
+            "Starting UI subsystem and compositor... [ OK ]",
+            "Loading portfolio assets... [ OK ]",
+            "Verifying security protocols... [ OK ]",
+            "Resolving dependencies... [ OK ]",
+            "Mounting user profile 'w2zfrhn'... [ OK ]",
+            "System boot sequence complete.",
+            "Starting GUI environment...",
+            "",
+            "<div class='boot-welcome'>Welcome W2ZFRHN</div>"
+        ];
+
+        let i = 0;
         
-        const bootInterval = setInterval(() => {
-            progress += Math.random() * 10;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(bootInterval);
-                
-                // Boot complete, show login screen
+        const typeMessage = () => {
+            if (!terminal) return;
+            
+            if (i < bootMessages.length) {
+                terminal.innerHTML += bootMessages[i] + "<br>";
+                terminal.scrollTop = terminal.scrollHeight;
+                i++;
+                setTimeout(typeMessage, 50 + Math.random() * 80); // Speed up typing slightly
+            } else {
+                // Automatically transition to desktop after 1s
                 setTimeout(() => {
-                    this.showLoginScreen();
-                }, 500);
+                    this.showDesktop();
+                }, 1000);
             }
-            
-            progressFill.style.width = `${progress}%`;
-        }, 200);
+        };
+
+        setTimeout(typeMessage, 300);
     }
     
-    showLoginScreen() {
+    showDesktop() {
+        // Update user name in start menu
+        document.querySelector('.user-name').textContent = 'wazeh farhan';
+        
+        // Show desktop
         document.getElementById('boot-screen').classList.add('hidden');
-        document.getElementById('login-screen').classList.remove('hidden');
-        this.currentScreen = 'login';
+        document.getElementById('desktop').classList.remove('hidden');
+        this.currentScreen = 'desktop';
         
-        // Focus on password field
-        setTimeout(() => {
-            document.getElementById('password').focus();
-        }, 100);
-    }
-    
-    login() {
-        const password = document.getElementById('password').value;
-        const loginError = document.getElementById('login-error');
+        // Apply wallpaper
+        this.applyWallpaper(this.wallpaper);
         
-        // Check password (1234)
-        if (password === '1234') {
-            const username = document.getElementById('username').value || 'Guest';
-            
-            // Update user name in start menu
-            document.querySelector('.user-name').textContent = username;
-            
-            // Show desktop
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('desktop').classList.remove('hidden');
-            this.currentScreen = 'desktop';
-            
-            // Apply wallpaper
-            this.applyWallpaper(this.wallpaper);
-            
-            // Initialize desktop components
-            this.initializeDesktop();
-            
-            // Clear password field for next login
-            document.getElementById('password').value = '';
-            loginError.classList.add('hidden');
-        } else {
-            // Show error message
-            loginError.classList.remove('hidden');
-            document.getElementById('password').value = '';
-            document.getElementById('password').focus();
-        }
+        // Initialize desktop components
+        this.initializeDesktop();
     }
     
     applyWallpaper(wallpaperName) {

@@ -30,174 +30,45 @@ body {
 
 /* Boot Screen */
 #boot-screen {
-    background: linear-gradient(to bottom, #0a246a, #a6caf0);
-    color: white;
-}
-
-.boot-container {
-    text-align: center;
-}
-
-.xp-logo {
-    margin-bottom: 30px;
-}
-
-.xp-window {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #7db9e8, #1e5799);
-    margin: 0 auto 20px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.xp-window::before {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    background: white;
-    border-radius: 5px;
-}
-
-.xp-window::after {
-    content: "";
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    right: 30px;
-    bottom: 30px;
-    background: linear-gradient(135deg, #7db9e8, #1e5799);
-    border-radius: 3px;
-}
-
-.xp-text {
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.boot-progress {
-    width: 300px;
-    margin: 0 auto;
-}
-
-.progress-bar {
-    height: 20px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.3);
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(to right, #ffd700, #ff8c00);
-    width: 0%;
-    transition: width 0.1s ease;
-}
-
-/* Login Screen */
-#login-screen {
-    background: linear-gradient(to bottom, #0a246a, #a6caf0);
-}
-
-.login-container {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    text-align: center;
-    width: 350px;
-}
-
-.login-header {
-    margin-bottom: 30px;
-}
-
-.xp-logo-small {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #7db9e8, #1e5799);
-    margin: 0 auto 15px;
-    border-radius: 5px;
-    position: relative;
-}
-
-.xp-logo-small::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    background: white;
-    border-radius: 3px;
-}
-
-.xp-logo-small::after {
-    content: "";
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    background: linear-gradient(135deg, #7db9e8, #1e5799);
-    border-radius: 2px;
-}
-
-.login-header h1 {
-    color: #1e5799;
-    font-size: 24px;
-}
-
-.login-form {
+    background: #000;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
     display: flex;
-    align-items: center;
-    gap: 20px;
 }
 
-.user-icon {
-    width: 80px;
-    height: 80px;
-    
-    border-radius: 5px;
-}
-
-.login-inputs {
-    flex: 1;
-}
-
-.login-inputs input {
+.boot-terminal {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.login-error {
-    color: #c00;
-    font-size: 12px;
-    margin-bottom: 10px;
+    height: 100%;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    white-space: pre-wrap;
+    word-wrap: break-word;
     text-align: left;
 }
 
-#login-btn {
-    width: 100%;
-    padding: 8px;
-    background: linear-gradient(to bottom, #5b9c36, #3a6b1f);
-    color: white;
-    border: 1px solid #2d5118;
-    border-radius: 3px;
-    cursor: pointer;
+.boot-welcome {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin: 20px 0;
+    text-align: center;
+    white-space: pre;
 }
 
-#login-btn:hover {
-    background: linear-gradient(to bottom, #6bac41, #4a7b29);
+.boot-prompt {
+    color: #fff;
+    margin-top: 20px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 /* Desktop */
