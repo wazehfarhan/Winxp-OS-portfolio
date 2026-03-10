@@ -96,6 +96,12 @@ class TaskbarManager {
             case 'explorer':
                 ExplorerApp.launch(this.windowManager);
                 break;
+            case 'c-ide':
+                CIdeApp.launch(this.windowManager);
+                break;
+            case 'cpp-ide':
+                CppIdeApp.launch(this.windowManager);
+                break;
             case 'notepad':
                 NotepadApp.launch(this.windowManager);
                 break;

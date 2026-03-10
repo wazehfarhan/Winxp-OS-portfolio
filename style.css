@@ -636,6 +636,8 @@ body {
 .icon.explorer { background-image: url('assets/icons/explorer.svg'); }
 .icon.contact { background-image: url('assets/icons/contact.svg'); }
 .icon.notepad { background-image: url('assets/icons/notepad.svg'); }
+.icon.c-ide { background-image: url('assets/icons/c-ide.svg'); }
+.icon.cpp-ide { background-image: url('assets/icons/cpp-ide.svg'); }
 
 /* Quick launch icons */
 .quick-icon.portfolio { background-image: url('assets/icons/portfolio.svg'); background-size: 16px 16px; background-position: center; background-color: rgba(255,255,255,0.8); }
@@ -655,6 +657,8 @@ body {
 .menu-icon.explorer { background-image: url('assets/icons/explorer.svg'); background-size: 20px 20px; background-position: center; }
 .menu-icon.contact { background-image: url('assets/icons/contact.svg'); background-size: 20px 20px; background-position: center; }
 .menu-icon.notepad { background-image: url('assets/icons/notepad.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.c-ide { background-image: url('assets/icons/c-ide.svg'); background-size: 20px 20px; background-position: center; }
+.menu-icon.cpp-ide { background-image: url('assets/icons/cpp-ide.svg'); background-size: 20px 20px; background-position: center; }
 .menu-icon.shutdown { background: #ff6b6b; }
 
 /* File icons for explorer */
@@ -665,7 +669,7 @@ body {
 .icon.portfolio, .icon.resume, .icon.projects, 
 .icon.education, .icon.skills, .icon.about,
 .icon.drawing, .icon.calendar, .icon.explorer,
-.icon.contact, .icon.notepad {
+.icon.contact, .icon.notepad, .icon.c-ide, .icon.cpp-ide {
     background-color: transparent !important;
     border: none !important;
 }
