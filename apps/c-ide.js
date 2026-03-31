@@ -1,15 +1,15 @@
 class CIdeApp {
   static launch(windowManager) {
-    const content = `
-            <div class="c-ide-app" style="height: 100%; display: flex; flex-direction: column; background: #1e1e1e; color: #d4d4d4; font-family: 'Consolas', 'Courier New', monospace;">
+        const content = `
+            <div class="modern-app modern-app-no-padding" style="height: 100%; display: flex; flex-direction: column; background: #0f172a; color: #f8fafc; font-family: 'Consolas', 'Courier New', monospace;">
                 <!-- Toolbar -->
-                <div class="ide-toolbar" style="background: #2d2d2d; padding: 8px 12px; border-bottom: 1px solid #3c3c3c; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                <div class="ide-toolbar" style="background: #1e293b; padding: 12px; border-bottom: 1px solid #334155; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                     <div style="display: flex; gap: 8px;">
-                        <button id="run-btn" style="background: #0e639c; color: white; border: none; padding: 4px 16px; cursor: pointer; font-size: 12px; border-radius: 4px; font-weight: 500;">▶ Run</button>
-                        <button id="clear-btn" style="background: transparent; color: #ccc; border: 1px solid #3c3c3c; padding: 4px 16px; cursor: pointer; font-size: 12px; border-radius: 4px;">Clear</button>
+                        <button class="modern-btn primary" id="run-btn" style="padding: 6px 14px; font-size: 13px; font-weight: 500;">▶ Run</button>
+                        <button class="modern-btn secondary" id="clear-btn" style="padding: 6px 14px; font-size: 13px; border-color: #475569; color: #cbd5e1;">Clear</button>
                     </div>
                     
-                    <select id="template-select" style="background: #3c3c3c; color: #ccc; border: 1px solid #4c4c4c; padding: 3px 8px; border-radius: 3px; font-size: 12px;">
+                    <select id="template-select" style="background: #0f172a; color: #cbd5e1; border: 1px solid #334155; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-family: 'Inter', sans-serif;">
                         <option value="basic">📄 Basic C Program</option>
                         <option value="variables">🔢 Variables Demo</option>
                         <option value="arithmetic">🧮 Arithmetic Operations</option>
@@ -18,19 +18,19 @@ class CIdeApp {
                     </select>
                     
                     <div style="flex: 1;"></div>
-                    <div style="color: #888; font-size: 12px; background: #3c3c3c; padding: 3px 12px; border-radius: 12px;" id="file-info">main.c</div>
+                    <div style="color: #94a3b8; font-size: 13px; font-family: 'Inter', sans-serif; background: #0f172a; padding: 4px 12px; border-radius: 12px;" id="file-info">main.c</div>
                 </div>
                 
                 <!-- Main container -->
                 <div style="flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative;" id="main-container">
                     <!-- Editor section -->
                     <div id="editor-container" style="flex: 1; display: flex; overflow: hidden; min-height: 100px; position: relative;">
-                        <div id="line-numbers-container" style="width: 50px; background: #1e1e1e; border-right: 1px solid #3c3c3c; overflow: hidden; position: relative;">
-                            <div id="line-numbers" style="color: #6a9955; text-align: right; padding-right: 10px; padding-top: 10px; font-size: 14px; line-height: 1.6; font-family: 'Consolas', monospace; white-space: pre; position: absolute; top: 0; right: 0; left: 0;">
+                        <div id="line-numbers-container" style="width: 50px; background: #0f172a; border-right: 1px solid #334155; overflow: hidden; position: relative;">
+                            <div id="line-numbers" style="color: #475569; text-align: right; padding-right: 12px; padding-top: 12px; font-size: 14px; line-height: 1.6; font-family: 'Consolas', monospace; white-space: pre; position: absolute; top: 0; right: 0; left: 0;">
                                 1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
                             </div>
                         </div>
-                        <textarea id="code-editor" spellcheck="false" wrap="off" style="flex: 1; background: #1e1e1e; color: #d4d4d4; border: none; resize: none; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; padding: 10px; outline: none; line-height: 1.6; white-space: pre; overflow: auto;">#include <stdio.h>
+                        <textarea id="code-editor" spellcheck="false" wrap="off" style="flex: 1; background: #0f172a; color: #e2e8f0; border: none; resize: none; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; padding: 12px; outline: none; line-height: 1.6; white-space: pre; overflow: auto;">#include <stdio.h>
 
 int main() {
     int number = 10;
@@ -40,22 +40,22 @@ int main() {
                     </div>
                     
                     <!-- Splitter -->
-                    <div id="splitter" style="height: 4px; background: #3c3c3c; cursor: ns-resize; user-select: none; display: flex; justify-content: center; align-items: center;">
-                        <div style="width: 50px; height: 2px; background: #6a9955; border-radius: 2px;"></div>
+                    <div id="splitter" style="height: 6px; background: #1e293b; cursor: ns-resize; user-select: none; display: flex; justify-content: center; align-items: center; border-top: 1px solid #334155; border-bottom: 1px solid #334155;">
+                        <div style="width: 60px; height: 2px; background: #475569; border-radius: 2px;"></div>
                     </div>
                     
                     <!-- Terminal -->
-                    <div id="terminal-container" style="height: 200px; background: #1a1a1a; border-top: 2px solid #3c3c3c; display: flex; flex-direction: column;">
-                        <div style="background: #2d2d2d; padding: 4px 12px; color: #888; font-size: 11px; border-bottom: 1px solid #3c3c3c;">
-                            <span style="color: #0e639c;">🔴 TERMINAL</span>
+                    <div id="terminal-container" style="height: 200px; background: #020617; display: flex; flex-direction: column;">
+                        <div style="background: #0f172a; padding: 6px 12px; color: #94a3b8; font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 500; border-bottom: 1px solid #334155;">
+                            <span style="color: #3b82f6;">● TERMINAL</span>
                         </div>
-                        <div id="terminal" style="flex: 1; overflow-y: auto; padding: 10px; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.5; background: #1a1a1a; color: #ccc;"></div>
+                        <div id="terminal" style="flex: 1; overflow-y: auto; padding: 12px; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.6; background: #020617; color: #cbd5e1;"></div>
                     </div>
                 </div>
                 
                 <!-- Status bar -->
-                <div style="background: #0e639c; padding: 2px 12px; color: white; font-size: 11px; display: flex; gap: 20px;">
-                    <span>✨ C IDE</span>
+                <div style="background: #3b82f6; padding: 4px 16px; color: white; font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 500; display: flex; gap: 24px;">
+                    <span>⚡ C IDE</span>
                     <span id="line-count">Ln 1, Col 1</span>
                     <span id="file-size">0 KB</span>
                     <span style="flex: 1;"></span>

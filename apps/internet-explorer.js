@@ -1,16 +1,17 @@
 class InternetExplorerApp {
     static launch(windowManager) {
         const content = `
-            <div class="browser-app" style="height: 100%; display: flex; flex-direction: column;">
-                <div class="browser-toolbar">
-                    <button class="xp-button" onclick="InternetExplorerApp.goBack(this)">← Back</button>
-                    <button class="xp-button" onclick="InternetExplorerApp.goForward(this)">→ Forward</button>
-                    <button class="xp-button" onclick="InternetExplorerApp.refreshPage(this)">↻ Refresh</button>
-                    <input type="text" class="browser-address-bar" id="browserAddress" 
+            <div class="modern-app modern-app-no-padding" style="height: 100%; display: flex; flex-direction: column;">
+                <div class="browser-toolbar" style="background: #f1f5f9; padding: 12px; border-bottom: 1px solid #cbd5e1; display: flex; gap: 8px; align-items: center;">
+                    <button class="modern-btn secondary" style="padding: 6px 12px; font-size: 0.8rem;" onclick="InternetExplorerApp.goBack(this)">←</button>
+                    <button class="modern-btn secondary" style="padding: 6px 12px; font-size: 0.8rem;" onclick="InternetExplorerApp.goForward(this)">→</button>
+                    <button class="modern-btn secondary" style="padding: 6px 12px; font-size: 0.8rem;" onclick="InternetExplorerApp.refreshPage(this)">↻</button>
+                    <input type="text" class="modern-input" id="browserAddress" 
                            value="https://www.github.com/wazehfarhan.com" 
+                           style="margin-bottom: 0; padding: 8px 12px; height: auto;"
                            onkeypress="if(event.key=='Enter') InternetExplorerApp.navigateToUrl(this.value)">
-                    <button class="xp-button" onclick="InternetExplorerApp.navigateToUrl(document.getElementById('browserAddress').value)">Go</button>
-                    <button class="xp-button" onclick="InternetExplorerApp.showHomePage(this)">Home</button>
+                    <button class="modern-btn primary" style="padding: 6px 16px; font-size: 0.8rem;" onclick="InternetExplorerApp.navigateToUrl(document.getElementById('browserAddress').value)">Go</button>
+                    <button class="modern-btn secondary" style="padding: 6px 12px; font-size: 0.8rem;" onclick="InternetExplorerApp.showHomePage(this)">🏠</button>
                 </div>
                 <div class="browser-content" id="browserContent">
                     <div class="browser-placeholder">
@@ -79,7 +80,7 @@ class InternetExplorerApp {
                             <p>Passionate developer with expertise in multiple programming languages and web technologies.</p>
                             <p><strong>Skills:</strong> C, C++, Java, JavaScript, HTML/CSS, SQL, C#</p>
                         </div>
-                        <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
+                        <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
                 break;
@@ -100,7 +101,7 @@ class InternetExplorerApp {
                             </ul>
                         </div>
                         <p><em>Visit actual GitHub: github.com/wazehfarhan</em></p>
-                        <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
+                        <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
                 break;
@@ -117,7 +118,7 @@ class InternetExplorerApp {
                         </div>
                         <p><strong>Current:</strong> Computer Science Student at AIUB</p>
                         <p><em>Visit actual LinkedIn: linkedin.com/in/w2zfrhn</em></p>
-                        <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
+                        <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
                 break;
@@ -136,7 +137,7 @@ class InternetExplorerApp {
                             <p>Higher Secondary Certificate (HSC)</p>
                             <p>GPA: 5.00</p>
                         </div>
-                        <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
+                        <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
                 break;
@@ -163,7 +164,7 @@ class InternetExplorerApp {
                                 <small>Technologies: HTML, CSS, JavaScript</small>
                             </div>
                         </div>
-                        <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
+                        <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
                 break;
@@ -182,7 +183,7 @@ class InternetExplorerApp {
                             <h4>Let's Connect!</h4>
                             <p>I'm always open to discussing new opportunities, collaborations, and technical projects.</p>
                         </div>
-                        <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
+                        <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">← Back to Home</button>
                     </div>
                 `;
                 break;
@@ -211,7 +212,7 @@ class InternetExplorerApp {
                     <h2 style="color: #dc3545;">Cannot display the webpage</h2>
                     <p>Internet Explorer cannot display this webpage.</p>
                     <p>This is a simulated browser that only works with Farhan's portfolio websites.</p>
-                    <button class="xp-button" onclick="InternetExplorerApp.showHomePage()">Go to Homepage</button>
+                    <button class="modern-btn secondary" style="margin-top: 16px; padding: 6px 16px;" onclick="InternetExplorerApp.showHomePage()">Go to Homepage</button>
                 </div>
             `;
         }

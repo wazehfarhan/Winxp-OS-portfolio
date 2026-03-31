@@ -1,91 +1,63 @@
 class SkillsApp {
     static launch(windowManager) {
         const content = `
-            <div class="skills-content">
-                <h3>My Technical Skills</h3>
+            <div class="modern-app">
+                <h2 style="margin-bottom: 24px; text-align:center;">My Technical Skills</h2>
                 
-                <div style="margin: 20px 0;">
-                    <h4>Programming Languages</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
-                        <div style="text-align: center; padding: 10px; background: #e8f4f8; border-radius: 5px;">
-                            <div style="font-size: 24px;">C</div>
-                            <div style="height: 10px; background: #ccc; border-radius: 5px; margin: 5px 0;">
-                                <div style="height: 100%; width: 85%; background: #4ecdc4; border-radius: 5px;"></div>
-                            </div>
-                            <small>Advanced</small>
+                <div class="modern-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
+                    <div class="modern-card">
+                        <h3>Programming Languages</h3>
+                        <div class="modern-progress-wrapper">
+                            <div class="modern-progress-header"><span>C / C++</span><span>Advanced</span></div>
+                            <div class="modern-progress-bg"><div class="modern-progress-fill" style="width: 85%"></div></div>
                         </div>
-                        <div style="text-align: center; padding: 10px; background: #e8f4f8; border-radius: 5px;">
-                            <div style="font-size: 24px;">C++</div>
-                            <div style="height: 10px; background: #ccc; border-radius: 5px; margin: 5px 0;">
-                                <div style="height: 100%; width: 80%; background: #45b7d1; border-radius: 5px;"></div>
-                            </div>
-                            <small>Advanced</small>
+                        <div class="modern-progress-wrapper">
+                            <div class="modern-progress-header"><span>Java</span><span>Intermediate</span></div>
+                            <div class="modern-progress-bg"><div class="modern-progress-fill" style="width: 75%"></div></div>
                         </div>
-                        <div style="text-align: center; padding: 10px; background: #e8f4f8; border-radius: 5px;">
-                            <div style="font-size: 24px;">Java</div>
-                            <div style="height: 10px; background: #ccc; border-radius: 5px; margin: 5px 0;">
-                                <div style="height: 100%; width: 75%; background: #96ceb4; border-radius: 5px;"></div>
-                            </div>
-                            <small>Intermediate</small>
+                        <div class="modern-progress-wrapper" style="margin-bottom: 0;">
+                            <div class="modern-progress-header"><span>JavaScript / C#</span><span>Intermediate</span></div>
+                            <div class="modern-progress-bg"><div class="modern-progress-fill" style="width: 70%"></div></div>
                         </div>
-                        <div style="text-align: center; padding: 10px; background: #e8f4f8; border-radius: 5px;">
-                            <div style="font-size: 24px;">JavaScript</div>
-                            <div style="height: 10px; background: #ccc; border-radius: 5px; margin: 5px 0;">
-                                <div style="height: 100%; width: 70%; background: #feca57; border-radius: 5px;"></div>
-                            </div>
-                            <small>Intermediate</small>
+                    </div>
+                    
+                    <div class="modern-card">
+                        <h3>Web & Databases</h3>
+                        <div class="modern-progress-wrapper">
+                            <div class="modern-progress-header"><span>HTML5 / CSS3</span><span>Advanced</span></div>
+                            <div class="modern-progress-bg"><div class="modern-progress-fill" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="modern-progress-wrapper">
+                            <div class="modern-progress-header"><span>SQL</span><span>Intermediate</span></div>
+                            <div class="modern-progress-bg"><div class="modern-progress-fill" style="width: 75%"></div></div>
+                        </div>
+                        <div class="modern-progress-wrapper" style="margin-bottom: 0;">
+                            <div class="modern-progress-header"><span>Responsive Design</span><span>Advanced</span></div>
+                            <div class="modern-progress-bg"><div class="modern-progress-fill" style="width: 85%"></div></div>
                         </div>
                     </div>
                 </div>
                 
-                <div style="margin: 20px 0;">
-                    <h4>Web Technologies</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <div>
-                            <ul>
-                                <li>HTML5</li>
-                                <li>CSS3</li>
-                                <li>Responsive Design</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>SQL</li>
-                                <li>C#</li>
-                                <li>Web Development</li>
-                            </ul>
-                        </div>
+                <div class="modern-card" style="margin-bottom: 24px;">
+                    <h3>Core Concepts</h3>
+                    <div class="modern-flex">
+                        <span class="modern-pill">Object-Oriented Programming (OOP)</span>
+                        <span class="modern-pill">Data Structures</span>
+                        <span class="modern-pill">Algorithms</span>
+                        <span class="modern-pill">Problem Solving</span>
+                        <span class="modern-pill">Software Engineering</span>
+                        <span class="modern-pill">Version Control (Git)</span>
                     </div>
                 </div>
                 
-                <div style="margin: 20px 0;">
-                    <h4>Core Concepts</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <div>
-                            <ul>
-                                <li>Object-Oriented Programming (OOP)</li>
-                                <li>Data Structures</li>
-                                <li>Algorithms</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>Problem Solving</li>
-                                <li>Software Engineering</li>
-                                <li>Version Control (Git)</li>
-                            </ul>
-                        </div>
+                <div class="modern-card" style="background: #fdf4ff; border-color: #f5d0fe;">
+                    <h4 style="color: #c026d3; margin-bottom: 12px;">🚀 Currently Learning</h4>
+                    <div class="modern-flex" style="gap: 8px;">
+                        <span class="modern-pill" style="background:#fce7f3; color:#db2777; border-color:#fbcfe8;">React.js</span>
+                        <span class="modern-pill" style="background:#fce7f3; color:#db2777; border-color:#fbcfe8;">Node.js</span>
+                        <span class="modern-pill" style="background:#fce7f3; color:#db2777; border-color:#fbcfe8;">Python</span>
+                        <span class="modern-pill" style="background:#fce7f3; color:#db2777; border-color:#fbcfe8;">Advanced DB Design</span>
                     </div>
-                </div>
-                
-                <div style="margin: 20px 0; padding: 10px; background: #f0f0f0; border-radius: 5px;">
-                    <h4>Currently Learning</h4>
-                    <ul>
-                        <li>React.js</li>
-                        <li>Node.js</li>
-                        <li>Python</li>
-                        <li>Database Design</li>
-                    </ul>
                 </div>
             </div>
         `;

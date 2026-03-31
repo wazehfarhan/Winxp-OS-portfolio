@@ -145,9 +145,20 @@ class WindowsXPWebOS {
     setupContextMenu() {
         const desktop = document.getElementById('desktop');
         const contextMenu = document.getElementById('context-menu');
+        this.selectedDesktopIcon = null;
         
         desktop.addEventListener('contextmenu', (e) => {
             e.preventDefault();
+            
+            // Track if right-clicked on an icon
+            const icon = e.target.closest('.desktop-icon');
+            this.selectedDesktopIcon = icon;
+            
+            // Show/hide "Open" based on whether an icon is selected
+            const openItem = contextMenu.querySelector('[data-action="open"]');
+            if (openItem) {
+                openItem.style.display = icon ? 'block' : 'none';
+            }
             
             // Position context menu at cursor
             const x = Math.min(e.clientX, window.innerWidth - 160);
@@ -165,15 +176,112 @@ class WindowsXPWebOS {
             setTimeout(() => contextMenu.classList.add('hidden'), 200);
         });
         
-        // Prevent context menu from closing when clicking inside it
+        // Context menu item click handlers
         contextMenu.addEventListener('click', (e) => {
-            e.stopPropagation();
+            const item = e.target.closest('.context-item');
+            if (!item) return;
+            
+            const action = item.getAttribute('data-action');
+            this.handleContextAction(action);
+            
+            // Close context menu after action
+            contextMenu.classList.remove('visible');
+            setTimeout(() => contextMenu.classList.add('hidden'), 200);
         });
     }
     
+    handleContextAction(action) {
+        switch (action) {
+            case 'open':
+                if (this.selectedDesktopIcon) {
+                    const appId = this.selectedDesktopIcon.getAttribute('data-app');
+                    this.taskbarManager.launchApp(appId);
+                }
+                break;
+                
+            case 'refresh':
+                // Animate desktop icons briefly, then reload
+                const icons = document.querySelectorAll('.desktop-icon');
+                icons.forEach(icon => {
+                    icon.style.opacity = '0.5';
+                    setTimeout(() => { icon.style.opacity = '1'; }, 300);
+                });
+                break;
+                
+            case 'paste':
+                this.showInfoDialog('Paste', 'Clipboard is empty.');
+                break;
+                
+            case 'new-folder':
+                this.createDesktopItem('📁', 'New Folder');
+                break;
+                
+            case 'new-text-file':
+                this.createDesktopItem('📄', 'New Text Document');
+                break;
+                
+            case 'properties':
+                this.showPropertiesDialog();
+                break;
+        }
+    }
+    
+    createDesktopItem(emoji, name) {
+        const desktopIcons = document.querySelector('.desktop-icons');
+        const newIcon = document.createElement('div');
+        newIcon.className = 'desktop-icon';
+        newIcon.innerHTML = `
+            <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:32px;">${emoji}</div>
+            <span>${name}</span>
+        `;
+        newIcon.addEventListener('dblclick', () => {
+            this.showInfoDialog(name, `"${name}" is a simulated desktop item.`);
+        });
+        desktopIcons.appendChild(newIcon);
+    }
+    
+    showInfoDialog(title, message) {
+        const existing = document.getElementById('info-dialog');
+        if (existing) existing.remove();
+        
+        const dialog = document.createElement('div');
+        dialog.id = 'info-dialog';
+        dialog.className = 'dialog';
+        dialog.innerHTML = `
+            <div class="dialog-title">${title}</div>
+            <div class="dialog-content">
+                <p style="font-size:12px;">${message}</p>
+            </div>
+            <div class="dialog-buttons">
+                <button class="dialog-button" onclick="this.closest('.dialog').remove()">OK</button>
+            </div>
+        `;
+        document.getElementById('desktop').appendChild(dialog);
+    }
+    
+    showPropertiesDialog() {
+        const windowCount = this.windowManager ? this.windowManager.windows.length : 0;
+        const now = new Date();
+        const uptime = Math.floor((now - this.bootTime) / 1000);
+        const mins = Math.floor(uptime / 60);
+        const secs = uptime % 60;
+        
+        this.showInfoDialog('System Properties', `
+            <strong>Farhan's Portfolio OS</strong><br>
+            <br>
+            Screen: ${window.innerWidth} × ${window.innerHeight}<br>
+            Open Windows: ${windowCount}<br>
+            Uptime: ${mins}m ${secs}s<br>
+            User Agent: ${navigator.userAgent.substring(0, 60)}…
+        `);
+    }
+    
+    setupDesktop() {
+        // Desktop click to deselect
+    }
+    
     addWallpaperOptions() {
-        // This can be extended to add wallpaper changing functionality
-        console.log('Wallpaper options ready - extend this method to add UI for changing wallpapers');
+        this.bootTime = new Date();
     }
 }
 

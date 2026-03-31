@@ -3,22 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farhan's Portfolio OS</title>
+    <title>Farhan's Portfolio OS — Interactive Windows XP Web Experience</title>
+    <meta name="description" content="Explore Kazi Md. Wazeh Ullah Farhan's portfolio through an interactive Windows XP desktop experience built with pure HTML, CSS, and JavaScript. View resume, projects, skills, and more.">
+    <meta name="keywords" content="portfolio, Windows XP, web OS, Kazi Wazeh Ullah Farhan, computer science, web development, interactive resume">
+    <meta name="author" content="Kazi Md. Wazeh Ullah Farhan">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Farhan's Portfolio OS — Interactive Windows XP Web Experience">
+    <meta property="og:description" content="Explore my portfolio through an interactive Windows XP desktop clone built with pure HTML, CSS, and JavaScript.">
+    <meta property="og:image" content="screenshots/desktop.png">
+    <meta property="og:url" content="https://wazehfarhan.github.io/Winxp-OS-portfolio/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Farhan's Portfolio OS">
+    <meta name="twitter:description" content="Interactive Windows XP portfolio built with pure HTML, CSS, and JavaScript.">
+    <meta name="twitter:image" content="screenshots/desktop.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/xp.css">
+    <link rel="stylesheet" href="css/modern-apps.css">
     <link rel="icon" href="assets/img/propic.png">
 </head>
 <body>
     <!-- Boot Screen -->
-    <div id="boot-screen" class="screen">
-        <div id="boot-terminal" class="boot-terminal"></div>
+    <div id="boot-screen" class="screen" role="status" aria-label="System boot screen">
+        <div id="boot-terminal" class="boot-terminal" aria-live="polite"></div>
     </div>
 
 
     <!-- Desktop -->
-    <div id="desktop" class="screen hidden">
+    <div id="desktop" class="screen hidden" role="main" aria-label="Desktop">
         <!-- Desktop Icons -->
-        <div class="desktop-icons">
+        <div class="desktop-icons" role="list" aria-label="Desktop applications">
             <div class="desktop-icon" data-app="portfolio">
                 <div class="icon portfolio"></div>
                 <span>My Portfolio</span>
@@ -69,23 +86,23 @@
         <div id="windows-container"></div>
 
         <!-- Context Menu -->
-        <div id="context-menu" class="context-menu hidden">
-            <div class="context-item">Open</div>
-            <div class="context-separator"></div>
-            <div class="context-item">Refresh Desktop</div>
-            <div class="context-separator"></div>
-            <div class="context-item">Paste</div>
-            <div class="context-separator"></div>
-            <div class="context-item">New Folder</div>
-            <div class="context-item">New Text File</div>
-            <div class="context-separator"></div>
-            <div class="context-item">Properties</div>
+        <div id="context-menu" class="context-menu hidden" role="menu" aria-label="Desktop context menu">
+            <div class="context-item" role="menuitem" data-action="open" tabindex="-1">Open</div>
+            <div class="context-separator" role="separator"></div>
+            <div class="context-item" role="menuitem" data-action="refresh" tabindex="-1">Refresh Desktop</div>
+            <div class="context-separator" role="separator"></div>
+            <div class="context-item" role="menuitem" data-action="paste" tabindex="-1">Paste</div>
+            <div class="context-separator" role="separator"></div>
+            <div class="context-item" role="menuitem" data-action="new-folder" tabindex="-1">New Folder</div>
+            <div class="context-item" role="menuitem" data-action="new-text-file" tabindex="-1">New Text File</div>
+            <div class="context-separator" role="separator"></div>
+            <div class="context-item" role="menuitem" data-action="properties" tabindex="-1">Properties</div>
         </div>
 
         <!-- Taskbar -->
-        <div id="taskbar">
-            <div id="start-button" class="start-button">
-                <div class="start-icon"></div>
+        <div id="taskbar" role="navigation" aria-label="Taskbar">
+            <div id="start-button" class="start-button" role="button" aria-label="Start menu" tabindex="0">
+                <div class="start-icon" aria-hidden="true"></div>
                 <span>Start</span>
             </div>
             <div id="quick-launch" class="quick-launch">
@@ -109,7 +126,7 @@
         <div id="start-menu" class="start-menu hidden">
             <div class="start-menu-header">
                 <div class="user-picture">
-                    <img class="user-picture" src="assets/img/propic.png" alt="">
+                    <img class="user-picture" src="assets/img/propic.png" alt="Profile picture of Kazi Md. Wazeh Ullah Farhan">
                 </div>
                 <div class="user-name">Kazi Md. Wazeh Ullah Farhan</div>
             </div>

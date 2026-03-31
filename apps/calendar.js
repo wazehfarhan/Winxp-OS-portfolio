@@ -1,14 +1,14 @@
 class CalendarApp {
     static launch(windowManager) {
         const content = `
-            <div class="calendar-app" style="height: 100%; display: flex; flex-direction: column;">
-                <div class="calendar-header">
-                    <button class="xp-button" id="prevMonth">← Previous</button>
-                    <h3 id="currentMonth" style="margin: 0 15px; text-align: center; flex: 1;">Month Year</h3>
-                    <button class="xp-button" id="nextMonth">Next →</button>
+            <div class="modern-app" style="height: 100%; display: flex; flex-direction: column; padding: 20px;">
+                <div class="modern-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 12px 24px;">
+                    <button class="modern-btn secondary" id="prevMonth" style="padding: 6px 12px;">← Prev</button>
+                    <h3 id="currentMonth" style="margin: 0; color: #1e293b;">Month Year</h3>
+                    <button class="modern-btn secondary" id="nextMonth" style="padding: 6px 12px;">Next →</button>
                 </div>
-                <div style="flex: 1; padding: 10px;">
-                    <div class="calendar-grid" id="calendarGrid">
+                <div class="modern-card" style="flex: 1; padding: 20px;">
+                    <div class="calendar-grid" id="calendarGrid" style="height: 100%;">
                         <!-- Calendar will be generated here -->
                     </div>
                 </div>

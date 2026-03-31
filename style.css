@@ -6,6 +6,32 @@
     user-select: none;
 }
 
+/* Allow text selection inside app windows and textareas */
+.window-content, .window-content *, textarea, input {
+    user-select: text;
+}
+
+/* Keyboard focus indicators for accessibility */
+*:focus-visible {
+    outline: 2px solid #316ac5;
+    outline-offset: 2px;
+}
+
+.desktop-icon:focus-visible {
+    background: rgba(30, 87, 153, 0.5);
+    border-color: #1e5799;
+}
+
+.start-button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+}
+
+.context-item:focus-visible {
+    background: #316ac5;
+    color: white;
+}
+
 body {
     overflow: hidden;
     background: #000;
@@ -778,4 +804,177 @@ body {
 .website-item p {
     font-size: 11px;
     color: #666;
+}
+
+/* ===== Responsive Design ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .desktop-icons {
+        grid-template-columns: repeat(auto-fill, 70px);
+        grid-auto-rows: 70px;
+        gap: 10px;
+    }
+    
+    .start-menu {
+        width: 350px;
+        height: 400px;
+    }
+    
+    .window {
+        min-width: 280px;
+        min-height: 180px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #desktop {
+        padding: 10px;
+    }
+    
+    .desktop-icons {
+        grid-template-columns: repeat(auto-fill, 65px);
+        grid-auto-rows: 65px;
+        gap: 8px;
+    }
+    
+    .desktop-icon {
+        width: 65px;
+    }
+    
+    .icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .desktop-icon span {
+        font-size: 9px;
+    }
+    
+    /* Taskbar - mobile friendly */
+    #taskbar {
+        height: 44px;
+        padding: 0 3px;
+    }
+    
+    .start-button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .quick-launch {
+        display: none;
+    }
+    
+    .taskbar-app {
+        font-size: 10px;
+        padding: 4px 6px;
+        max-width: 100px;
+    }
+    
+    .clock {
+        font-size: 10px;
+        padding: 0 5px;
+    }
+    
+    .tray-icons {
+        display: none;
+    }
+    
+    /* Start Menu - mobile */
+    .start-menu {
+        width: 100vw;
+        height: 70vh;
+        bottom: 44px;
+        left: 0;
+        border-radius: 0;
+    }
+    
+    .start-menu-content {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    
+    .start-menu-right {
+        width: 100%;
+    }
+    
+    /* Windows - mobile full-screen */
+    .window {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: calc(100vh - 44px) !important;
+        min-width: unset;
+        min-height: unset;
+        border-radius: 0;
+        z-index: 500;
+    }
+    
+    .window-resize-handle {
+        display: none;
+    }
+    
+    .window-header {
+        border-radius: 0;
+        padding: 8px;
+    }
+    
+    .window-title {
+        font-size: 13px;
+    }
+    
+    .window-control {
+        width: 28px;
+        height: 22px;
+        font-size: 14px;
+    }
+    
+    .window.maximized {
+        height: calc(100vh - 44px) !important;
+    }
+    
+    /* Dialog - mobile centered */
+    .dialog {
+        width: 90vw;
+        min-width: unset;
+    }
+
+    .shutdown-options {
+        gap: 15px;
+    }
+    
+    .option-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    .desktop-icons {
+        grid-template-columns: repeat(auto-fill, 55px);
+        grid-auto-rows: 55px;
+        gap: 5px;
+    }
+    
+    .desktop-icon {
+        width: 55px;
+        padding: 3px;
+    }
+    
+    .icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .start-button span {
+        display: none;
+    }
+    
+    .start-menu-item span {
+        font-size: 12px;
+    }
 }

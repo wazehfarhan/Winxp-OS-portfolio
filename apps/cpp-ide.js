@@ -1,17 +1,17 @@
 class CppIdeApp {
     static launch(windowManager) {
         const content = `
-            <div class="cpp-ide-app" style="height: 100%; display: flex; flex-direction: column; background: #1e1e1e; color: #d4d4d4; font-family: 'Consolas', 'Courier New', monospace;">
-                <div class="ide-toolbar" style="background: #333; padding: 5px; border-bottom: 1px solid #555; display: flex; gap: 10px;">
-                    <button style="background: #4CAF50; color: white; border: none; padding: 2px 10px; cursor: pointer; font-size: 12px;">Run ▷</button>
-                    <button style="background: #2b2b2b; color: white; border: 1px solid #555; padding: 2px 10px; cursor: pointer; font-size: 12px;">Save</button>
-                    <span style="color: #888; font-size: 12px; margin-left: auto; margin-top: 2px;">main.cpp</span>
+            <div class="modern-app modern-app-no-padding" style="height: 100%; display: flex; flex-direction: column; background: #0f172a; color: #f8fafc; font-family: 'Fira Code', 'Consolas', monospace;">
+                <div class="ide-toolbar" style="background: #1e293b; padding: 12px; border-bottom: 1px solid #334155; display: flex; gap: 12px; align-items: center;">
+                    <button class="modern-btn primary" style="padding: 6px 14px; font-size: 13px; font-weight: 500;">▶ Run</button>
+                    <button class="modern-btn secondary" style="padding: 6px 14px; font-size: 13px; border-color: #475569; color: #cbd5e1;">Save</button>
+                    <span style="color: #94a3b8; font-size: 13px; font-family: 'Inter', sans-serif; margin-left: auto;">main.cpp</span>
                 </div>
                 <div class="ide-editor" style="flex: 1; display: flex;">
-                    <div class="line-numbers" style="width: 30px; background: #1e1e1e; color: #858585; text-align: right; padding-right: 5px; padding-top: 5px; border-right: 1px solid #404040; user-select: none;">
+                    <div class="line-numbers" style="width: 40px; background: #0f172a; color: #475569; text-align: right; padding-right: 12px; padding-top: 12px; border-right: 1px solid #334155; user-select: none; font-size: 14px;">
                         1<br>2<br>3<br>4<br>5<br>6<br>7<br>8
                     </div>
-                    <textarea class="ide-textarea" spellcheck="false" style="flex: 1; background: transparent; color: #d4d4d4; border: none; resize: none; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; padding: 5px; outline: none; line-height: 1.5; white-space: pre; overflow-wrap: normal; overflow-x: auto;">
+                    <textarea class="ide-textarea" spellcheck="false" style="flex: 1; background: transparent; color: #e2e8f0; border: none; resize: none; font-family: 'Consolas', 'Courier New', monospace; font-size: 14px; padding: 12px; outline: none; line-height: 1.6; white-space: pre; overflow-wrap: normal; overflow-x: auto;">
 #include &lt;iostream&gt;
 
 using namespace std;
@@ -22,8 +22,8 @@ int main() {
 }
 </textarea>
                 </div>
-                <div class="ide-terminal" style="height: 100px; background: #000; color: #ccc; border-top: 1px solid #404040; padding: 5px; font-size: 12px; font-family: 'Consolas', monospace; overflow-y: auto;">
-                    <div style="color: #4CAF50;">Terminal ready. Press Run to compile and execute.</div>
+                <div class="ide-terminal" style="height: 120px; background: #020617; color: #cbd5e1; border-top: 1px solid #334155; padding: 12px; font-size: 13px; font-family: 'Consolas', monospace; overflow-y: auto;">
+                    <div style="color: #10b981;">● Terminal ready. Press Run to compile and execute.</div>
                 </div>
             </div>
         `;

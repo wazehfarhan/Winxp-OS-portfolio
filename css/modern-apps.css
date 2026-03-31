@@ -1,0 +1,274 @@
+/* modern-apps.css */
+.modern-app {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #f8fafc;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 24px;
+    margin: 0;
+}
+
+.modern-app *,
+.modern-app *::before,
+.modern-app *::after {
+    box-sizing: inherit;
+}
+
+.modern-app-no-padding {
+    padding: 0;
+}
+
+/* Typography */
+.modern-app h1, .modern-app h2, .modern-app h3, .modern-app h4, .modern-app h5 {
+    font-family: 'Outfit', sans-serif;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.modern-app h1 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.025em; }
+.modern-app h2 { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.02ng5em; }
+.modern-app h3 { font-size: 1.5rem; font-weight: 600; }
+.modern-app p { margin-bottom: 1rem; color: #475569; }
+
+/* Grid and Flex Layouts */
+.modern-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.modern-flex {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.modern-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+}
+
+/* Responsive specific constraints */
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Glass & Clean Cards */
+.modern-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modern-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: #e2e8f0;
+}
+
+/* Buttons */
+.modern-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: none;
+    gap: 8px;
+}
+
+.modern-btn.primary {
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+.modern-btn.primary:hover {
+    box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+}
+
+.modern-btn.secondary {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.modern-btn.secondary:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* Pills & Tags */
+.modern-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #e0e7ff;
+    color: #4338ca;
+    margin: 4px;
+    border: 1px solid #c7d2fe;
+    transition: background 0.2s ease;
+}
+.modern-pill:hover { background: #c7d2fe; }
+
+/* Modern Input */
+.modern-input, .modern-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    background: #fff;
+    margin-bottom: 16px;
+}
+
+.modern-input:focus, .modern-textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Progress bar */
+.modern-progress-wrapper {
+    margin-bottom: 20px;
+}
+.modern-progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #1e293b;
+}
+.modern-progress-bg {
+    background: #e2e8f0;
+    border-radius: 999px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+.modern-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4f46e5, #0ea5e9);
+    border-radius: 999px;
+    transition: width 1s ease-out;
+}
+
+/* Timeline */
+.modern-timeline {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid #e2e8f0;
+    margin-top: 20px;
+}
+.modern-timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+}
+.modern-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+.modern-timeline-date {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6366f1;
+    margin-bottom: 4px;
+}
+
+/* Notion-like document */
+.modern-doc {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Hero Section */
+.modern-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 60px 40px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.modern-hero h1 { color: #f8fafc; font-size: 3rem; }
+.modern-hero p { color: #cbd5e1; font-size: 1.125rem; max-width: 600px; margin: 0 auto 24px; }
+
+/* Custom Scrollbar for modern-app */
+.modern-app::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.modern-app::-webkit-scrollbar-track {
+    background: transparent;
+}
+.modern-app::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
+.modern-app::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* Dark mode generic container */
+.modern-app.dark-mode {
+    background: #0f172a;
+    color: #f8fafc;
+}
+.modern-app.dark-mode h1, .modern-app.dark-mode h2, .modern-app.dark-mode h3, .modern-app.dark-mode h4, .modern-app.dark-mode h5 {
+    color: #f1f5f9;
+}
+.modern-app.dark-mode p {
+    color: #94a3b8;
+}
+.modern-app.dark-mode .modern-card {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+.modern-app.dark-mode .modern-card:hover { border-color: #475569; }
+.modern-app.dark-mode .modern-input, .modern-app.dark-mode .modern-textarea {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+}
