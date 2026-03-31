@@ -52,9 +52,9 @@ class ResumeApp {
                 </div>
                 
                 <div style="margin: 15px 0; text-align: center;">
-                    <button class="xp-button primary" onclick="alert('Resume download feature would be implemented here!')">
-                        Download Resume (PDF)
-                    </button>
+                    <a href="assets/Documents/kaziwazehullahfarhan_Resume.pdf" download="Kazi_Wazeh_Ullah_Farhan_Resume.pdf" style="text-decoration: none;">
+                        <button class="xp-button primary">📄 Download Resume (PDF)</button>
+                    </a>
                 </div>
             </div>
         `;
