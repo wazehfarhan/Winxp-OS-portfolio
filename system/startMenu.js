@@ -65,23 +65,34 @@ class StartMenuManager {
         const desktop = document.getElementById('desktop');
         const bootScreen = document.getElementById('boot-screen');
         
-        desktop.classList.add('hidden');
-        bootScreen.classList.remove('hidden');
+        // Close all open windows to prevent stale windows in memory
+        this.taskbarManager.windowManager.closeAllWindows();
         
-        setTimeout(() => {
-            this.hideShutdownDialog();
-        }, 2000);
+        this.hideShutdownDialog();
+        desktop.classList.add('hidden');
+        
+        // Show a black screen (boot screen cleared)
+        bootScreen.innerHTML = '<div class="boot-terminal"></div>';
+        bootScreen.classList.remove('hidden');
     }
     
     performRestart() {
-        this.performShutdown();
+        const desktop = document.getElementById('desktop');
+        const bootScreen = document.getElementById('boot-screen');
         
+        // Close all open windows
+        this.taskbarManager.windowManager.closeAllWindows();
+        
+        this.hideShutdownDialog();
+        desktop.classList.add('hidden');
+        
+        // Clear and show boot screen, then re-trigger the boot sequence
+        bootScreen.innerHTML = '<div class="boot-terminal"></div>';
+        bootScreen.classList.remove('hidden');
+        
+        // Re-trigger the full boot sequence after a brief pause
         setTimeout(() => {
-            const bootScreen = document.getElementById('boot-screen');
-            const loginScreen = document.getElementById('login-screen');
-            
-            bootScreen.classList.add('hidden');
-            loginScreen.classList.remove('hidden');
-        }, 3000);
+            location.reload();
+        }, 1500);
     }
 }

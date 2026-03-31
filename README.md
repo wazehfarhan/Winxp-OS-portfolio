@@ -17,7 +17,7 @@ A fully functional, browser-based clone of Windows XP built with pure HTML, CSS,
   
 | Login Screen | Desktop Environment | Applications |
 |:------------:|:-------------------:|:------------:|
-| <img src="screensorts/login.png" width="250"> | <img src="screensorts/desktop.png" width="250"> | <img src="screensorts/apps.png" width="250" height="138"> |
+| <img src="screenshots/login.png" width="250"> | <img src="screenshots/desktop.png" width="250"> | <img src="screenshots/apps.png" width="250" height="138"> |
 
 </div>
 
