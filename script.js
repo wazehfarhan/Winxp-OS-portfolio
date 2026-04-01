@@ -51,12 +51,46 @@ class WindowsXPWebOS {
             } else {
                 // Automatically transition to desktop after 1s
                 setTimeout(() => {
-                    this.showDesktop();
+                    this.showLoginScreen();
                 }, 1000);
             }
         };
 
         setTimeout(typeMessage, 300);
+    }
+    
+    showLoginScreen() {
+        document.getElementById('boot-screen').classList.add('hidden');
+        document.getElementById('login-screen').classList.remove('hidden');
+        this.currentScreen = 'login';
+        
+        const loginBtn = document.getElementById('login-btn');
+        const loginInput = document.getElementById('login-password');
+        
+        const loginAction = () => {
+            // Check button state to avoid double-clicking
+            if (loginBtn.innerHTML === '↻') return;
+            
+            loginBtn.innerHTML = '↻';
+            setTimeout(() => {
+                document.getElementById('login-screen').classList.add('hidden');
+                this.showDesktop();
+                // Reset button for future logoffs if implemented
+                loginBtn.innerHTML = '→';
+            }, 800);
+        };
+        
+        // Remove existing listener if any to prevent duplicates on reboot
+        const newLoginBtn = loginBtn.cloneNode(true);
+        loginBtn.parentNode.replaceChild(newLoginBtn, loginBtn);
+        newLoginBtn.addEventListener('click', loginAction);
+        
+        loginInput.value = '';
+        loginInput.onkeypress = (e) => {
+            if (e.key === 'Enter') loginAction();
+        };
+        
+        setTimeout(() => loginInput.focus(), 100);
     }
     
     showDesktop() {
@@ -65,6 +99,7 @@ class WindowsXPWebOS {
         
         // Show desktop
         document.getElementById('boot-screen').classList.add('hidden');
+        document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('desktop').classList.remove('hidden');
         this.currentScreen = 'desktop';
         
@@ -287,5 +322,5 @@ class WindowsXPWebOS {
 
 // Start the OS when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new WindowsXPWebOS();
+    window.os = new WindowsXPWebOS();
 });

@@ -63,36 +63,51 @@ class StartMenuManager {
     
     performShutdown() {
         const desktop = document.getElementById('desktop');
+        const loginScreen = document.getElementById('login-screen');
         const bootScreen = document.getElementById('boot-screen');
         
-        // Close all open windows to prevent stale windows in memory
-        this.taskbarManager.windowManager.closeAllWindows();
+        // Close all open windows to prevent stale memory
+        if (this.taskbarManager && this.taskbarManager.windowManager) {
+            this.taskbarManager.windowManager.closeAllWindows();
+        }
         
         this.hideShutdownDialog();
         desktop.classList.add('hidden');
+        if(loginScreen) loginScreen.classList.add('hidden');
         
-        // Show a black screen (boot screen cleared)
-        bootScreen.innerHTML = '<div class="boot-terminal"></div>';
+        // Show a black screen with shutting down text
+        bootScreen.innerHTML = '<div style="display:flex; height:100%; align-items:center; justify-content:center; flex-direction:column; color:white; font-size:1.5rem; font-family:var(--font-primary);"><img src="assets/img/winlogo.png" style="width:120px; margin-bottom:20px;">Windows is shutting down...</div>';
         bootScreen.classList.remove('hidden');
     }
     
     performRestart() {
         const desktop = document.getElementById('desktop');
+        const loginScreen = document.getElementById('login-screen');
         const bootScreen = document.getElementById('boot-screen');
         
         // Close all open windows
-        this.taskbarManager.windowManager.closeAllWindows();
+        if (this.taskbarManager && this.taskbarManager.windowManager) {
+            this.taskbarManager.windowManager.closeAllWindows();
+        }
         
         this.hideShutdownDialog();
         desktop.classList.add('hidden');
+        if(loginScreen) loginScreen.classList.add('hidden');
         
-        // Clear and show boot screen, then re-trigger the boot sequence
-        bootScreen.innerHTML = '<div class="boot-terminal"></div>';
+        // Show shutting down message
+        bootScreen.innerHTML = '<div style="display:flex; height:100%; align-items:center; justify-content:center; flex-direction:column; color:white; font-size:1.5rem; font-family:var(--font-primary);"><img src="assets/img/winlogo.png" style="width:120px; margin-bottom:20px;">Windows is shutting down...</div>';
         bootScreen.classList.remove('hidden');
         
-        // Re-trigger the full boot sequence after a brief pause
+        // Re-trigger the full boot sequence after a brief pause without hard reloading
         setTimeout(() => {
-            location.reload();
-        }, 1500);
+            bootScreen.innerHTML = '<div id="boot-terminal" class="boot-terminal" aria-live="polite"></div>';
+            if (window.os) {
+                // Wipe the background context so the boot screen has visual priority
+                document.getElementById('desktop').className = 'screen hidden';
+                window.os.init();
+            } else {
+                location.reload();
+            }
+        }, 2500);
     }
 }

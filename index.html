@@ -31,6 +31,34 @@
         <div id="boot-terminal" class="boot-terminal" aria-live="polite"></div>
     </div>
 
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen hidden" role="status" aria-label="System login screen">
+        <div class="login-split">
+            <div class="login-left">
+                <img src="assets/img/winlogo.png" alt="Windows Logo" class="login-logo" onerror="this.style.display='none'">
+                <div class="login-left-text">To begin, click your user name</div>
+            </div>
+            <div class="login-line"></div>
+            <div class="login-right">
+                <div class="login-user-block">
+                    <img src="assets/img/propic.png" alt="User Avatar" class="login-avatar" onerror="this.src=''; this.style.backgroundColor='#fff'">
+                    <div class="login-user-details">
+                        <div class="login-username">Wazeh Farhan</div>
+                        <div class="login-password-row">
+                            <input type="password" id="login-password" class="login-password" placeholder="Type your password">
+                            <button id="login-btn" class="login-submit">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="login-footer">
+            <div class="login-shutdown-btn" onclick="if(window.os) { document.querySelector('.start-menu-item.shutdown')?.click() || document.getElementById('login-screen').classList.add('hidden'); }">
+                <div class="option-icon shutdown" style="display:inline-block; width:16px; height:16px; margin-right:8px; vertical-align:middle;"></div>
+                Turn off computer
+            </div>
+        </div>
+    </div>
 
     <!-- Desktop -->
     <div id="desktop" class="screen hidden" role="main" aria-label="Desktop">

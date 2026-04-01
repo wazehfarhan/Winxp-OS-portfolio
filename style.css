@@ -991,3 +991,180 @@ body {
         font-size: 12px;
     }
 }
+
+/* ========================================= */
+/* Windows XP Login Screen                   */
+/* ========================================= */
+
+#login-screen {
+    background-color: #003399; /* XP blue */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10000;
+}
+
+#login-screen::before, #login-screen::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: #002266;
+    z-index: -1;
+}
+#login-screen::before {
+    top: 0;
+    border-bottom: 2px solid #ff9900;
+}
+#login-screen::after {
+    bottom: 0;
+}
+
+.login-split {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.login-left {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.login-logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.login-left-text {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.login-line {
+    width: 2px;
+    height: 350px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.login-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-user-block {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.0);
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.login-user-block:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.login-user-block:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-avatar {
+    width: 64px;
+    height: 64px;
+    border: 2px solid white;
+    border-radius: 4px;
+    margin-right: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.login-user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-username {
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    margin-bottom: 8px;
+}
+
+.login-password-row {
+    display: flex;
+    align-items: center;
+}
+
+.login-password {
+    background: white;
+    border: 1px solid #7a9ea6;
+    padding: 6px 8px;
+    width: 150px;
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+}
+
+.login-password:focus {
+    border-color: #ff9900;
+}
+
+.login-submit {
+    background: linear-gradient(to bottom, #4cb834 0%, #3a8b27 100%);
+    border: 1px solid #2d6b1e;
+    color: white;
+    width: 28px;
+    height: 28px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    font-weight: bold;
+}
+.login-submit:hover {
+    background: linear-gradient(to bottom, #56c23e 0%, #41992c 100%);
+}
+.login-submit:active {
+    background: #2d6b1e;
+}
+
+.login-footer {
+    position: absolute;
+    bottom: 25px;
+    left: 40px;
+}
+
+.login-shutdown-btn {
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.login-shutdown-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: underline;
+}
