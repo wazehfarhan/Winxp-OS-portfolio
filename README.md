@@ -1,141 +1,138 @@
-# Windows XP Portfolio Web OS
+# 🚀 Farhan's Portfolio OS — Enhanced Windows XP Web Experience (v2.0)
 
-A fully functional, browser-based clone of Windows XP built with pure HTML, CSS, and JavaScript. This interactive portfolio showcases my skills and projects through an authentic Windows XP desktop experience.
-
-![Windows XP Portfolio OS](https://img.shields.io/badge/Windows-XP%20Web%20OS-blue?style=for-the-badge)
+[![Vanilla](https://img.shields.io/badge/VanillaJS-100%25-blue?style=flat&logo=javascript&logoColor=yellow)](https://vanillajs.net/)
+[![Responsive](https://img.shields.io/badge/Responsive-Mobile%20First-green?style=flat&logo=css3)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-## 🌟 Live Demo
+A **fully functional, zero-dependency** browser-based Windows XP clone rebuilt as an interactive portfolio. Features authentic XP UI with **modern upgrades**: macOS-inspired login, C/C++ IDEs with transpilers, responsive design, performance optimizations, and glassmorphism apps.
 
-[🔗 Try it here!](https://wazehfarhan.github.io/Winxp-OS-portfolio/)
+## 🌟 [Live Demo](https://wazehfarhan.github.io/Winxp-OS-portfolio/)
 
-## 📸 Preview
+## 📸 Screenshots
 
-<div align="center">
-  
-| Login Screen | Desktop Environment | Applications |
-|:------------:|:-------------------:|:------------:|
-| <img src="screenshots/login.png" width="250"> | <img src="screenshots/desktop.png" width="250"> | <img src="screenshots/apps.png" width="250" height="138"> |
+|           Boot/Login           |               Desktop               |          Modern Apps          |
+| :----------------------------: | :---------------------------------: | :---------------------------: |
+| ![Boot](screenshots/login.png) | ![Desktop](screenshots/desktop.png) | ![Apps](screenshots/apps.png) |
 
-</div>
+## 🚀 Key Upgrades (v2.0 vs Original)
 
-## 🚀 Features
+- **macOS Lock Screen Login**: Live clock, blur effects, smooth animations (**Continue button**).
+- **Linux-like Boot Terminal**: Authentic sequence with typing animation.
+- **Performance**: Fast drag/resize (direct DOM), no lag.
+- **Mobile/Responsive**: Full mobile UI (stacked taskbar, fullscreen apps).
+- **Modern Apps**: Glassmorphism cards, Inter/Outfit fonts, dark-mode ready (`css/modern-apps.css`).
+- **New IDEs**: **C IDE** (transpiles C→JS, printf parser, templates, resizable terminal), **C++ IDE** (VSCode-style).
+- **Enhanced Apps**: Notepad (toolbar, find, stats, download), Explorer (modern grid), IE (portfolio browser).
 
-### 🖥️ Core System
-- **Authentic Windows XP UI** - Complete with gradients, shadows, and animations
-- **Functional Desktop** - Icons, context menus, and wallpaper
-- **Taskbar** - Start menu, quick launch, system tray with real-time clock
-- **Window Management** - Drag, resize, minimize, maximize, and close windows
-- **Login System** - Password-protected entry (password: `1234`)
+## 🖥️ Core System Features
 
-### 📱 Applications
-- **My Portfolio** - Personal introduction and skills overview
-- **My Resume** - Education, experience, and technical competencies
-- **My Projects** - Showcase of completed projects with descriptions
-- **My Education** - Academic background and coursework
-- **My Skills** - Technical skills with visual progress indicators
-- **About Me** - Personal story and interests
-- **Contact Info** - Professional contact information
-- **Drawing App** - Canvas-based drawing with brush controls
-- **Calendar** - Functional calendar with month navigation
-- **File Explorer** - Simulated file system with folders and files
-- **Internet Explorer** - Web browser for portfolio navigation
-- **Notepad** - Basic text editor
+- **Desktop**: Icons, context menu (new folder/file), wallpaper.
+- **Taskbar**: Start menu, quick launch, live clock, app switching.
+- **Window Manager**: Drag/resize/min/max/close, z-index stacking.
+- **Start Menu**: User profile (pro pic), categorized apps, shutdown dialog (standby/restart/shutdown).
 
-## 🛠️ Technology Stack
+## 📱 Full App List (14 Apps)
 
-- **Frontend**: Pure HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **Architecture**: Modular component-based design
-- **Styling**: Custom CSS with XP-themed gradients and animations
-- **Icons**: Custom SVG illustrations
-- **No Dependencies**: Built without any external frameworks or libraries
+| Portfolio     | Resume          | Projects         | Education           | Skills     | About            | Contact       |
+| ------------- | --------------- | ---------------- | ------------------- | ---------- | ---------------- | ------------- |
+| Intro & story | View PDF resume | Project showcase | Academic background | Skill bars | Personal details | Contact links |
+
+| Drawing        | Calendar  | Explorer      | IE                | **C IDE**        | **C++ IDE**     | Notepad        |
+| -------------- | --------- | ------------- | ----------------- | ---------------- | --------------- | -------------- |
+| Canvas drawing | Month nav | File grid sim | Portfolio browser | **C transpiler** | **VSCode-like** | Toolbar + find |
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Pure **HTML5/CSS3/Vanilla JS (ES6+)**
+- **No Dependencies**: Zero frameworks/libraries (runs offline).
+- **Fonts**: Google Fonts (Inter, Outfit).
+- **Design**: XP gradients + **modern glassmorphism**, responsive grids.
+- **Assets**: Custom SVG icons, propic.png, wallpaper.png, resume PDF.
 
 ## 📁 Project Structure
 
-    windows-xp-portfolio-os/
-    │
-    ├── index.html              # Main application entry point
-    ├── style.css               # Main stylesheet
-    ├── script.js               # Application bootstrap
-    │
-    ├── css/
-    │   └── xp.css              # Windows XP specific styles
-    │
-    ├── system/                 # Core OS components
-    │   ├── windowManager.js    # Window management system
-    │   ├── taskbar.js          # Taskbar functionality
-    │   └── startMenu.js        # Start menu operations
-    │
-    ├── apps/                   # Application modules
-    │   ├── portfolio.js        # Portfolio application
-    │   ├── resume.js           # Resume viewer
-    │   ├── projects.js         # Projects showcase
-    │   ├── education.js        # Education information
-    │   ├── skills.js           # Skills visualization
-    │   ├── about.js            # About me section
-    │   ├── contact.js          # Contact information
-    │   ├── drawing.js          # Drawing application
-    │   ├── calendar.js         # Calendar application
-    │   ├── explorer.js         # File explorer
-    │   ├── notepad.js          # Text editor
-    │   └── internet-explorer.js # Web browser
-    │
-    └── assets/
-        ├── icons/              # Application icons (SVG)
-        └── wallpapers/         # Desktop backgrounds
-
+```
+Winxp-OS-portfolio/
+├── index.html                 # Entry (SEO meta, boot/login/desktop)
+├── script.js                  # OS bootstrap (boot seq, macOS login)
+├── style.css                  # XP + responsive styles
+├── css/
+│   ├── xp.css                 # Classic XP theme
+│   └── modern-apps.css        # Glassmorphism/modern UI
+├── system/                    # Core OS
+│   ├── windowManager.js       # Drag/resize/z-index
+│   ├── taskbar.js             # Quick launch/clock
+│   └── startMenu.js           # User menu/shutdown
+├── apps/ (14)                 # Modular apps
+│   ├── portfolio.js, resume.js, ... (portfolio apps)
+│   ├── c-ide.js               # C transpiler w/ terminal
+│   ├── cpp-ide.js             # C++ VSCode-style
+│   └── notepad.js             # Modern editor
+├── assets/
+│   ├── icons/*.svg (17)       # App icons
+│   ├── img/propic.png         # Profile
+│   ├── wallpaper/walpaper.png
+│   └── Documents/resume.pdf
+├── screenshots/
+├── LICENSE
+└── README.md
+```
 
 ## 🎯 Quick Start
 
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- No server requirements - runs entirely client-side
+```bash
+# Clone & run (no server needed, but recommended for assets)
+git clone https://github.com/wazehfarhan/Winxp-OS-portfolio.git
+cd Winxp-OS-portfolio
 
-### Installation
+# Open directly
+open index.html
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/wazehfarhan/Winxp-OS-portfolio.git
-   cd Winxp-OS-portfolio
-   
+# Or local server
+npx http-server . -p 8000    # Node
+python -m http.server 8000   # Python
+php -S localhost:8000        # PHP
+```
 
-2. **Run Locally**
-    Open index.html in your web browser, or
-    Use a local server:
-    ```bash
-    # Using Python
-    python -m http.server 8000
+**Login**: Click **Continue** button on macOS-style lock screen (no password required).
 
-    # Using Node.js
-    npx http-server
+## 🎮 Usage
 
-    # Using PHP
-    php -S localhost:8000
-3. **Login**
+- **Desktop**: Double-click icons, right-click context menu.
+- **Windows**: Drag titlebar, resize SE corner.
+- **C IDE**: Edit C code → Run (transpiles/executes, printf/%d/%f support).
+- **Mobile**: Pinch/zoom, tap to focus.
 
-    - **Username: Guest (or any name)
-    - **Password: 1234
-### 🎮 How to Use
-    Basic Navigation
-    Double-click desktop icons to open applications
+## 📈 Performance & Accessibility
 
-    Click and drag window title bars to move windows    
+- **60fps Drag/Resize**: Direct style updates.
+- **ARIA Labels**: Screen reader friendly.
+- **Focus-Visible**: Keyboard nav.
+- **PWA-Ready**: Offline-capable.
 
-    Use the resize handle (bottom-right) to resize windows
+## 🔄 Changelog
 
-    Right-click on desktop for context menu
+| v2.0 | macOS login, C/C++ IDEs, modern apps, responsive, perf fixes |
+| ---- | ------------------------------------------------------------ |
+| v1.x | Basic XP clone (old README)                                  |
 
-    Click Start button for application menu
+## 🚧 Roadmap
 
-### Application Features
-    Drawing App: Use brush size slider and color picker to draw
+- [ ] PWA install/manifest.
+- [ ] LocalStorage persistence (files/saves).
+- [ ] More transpilers (Python?).
+- [ ] Themes (dark mode toggle).
 
-    Calendar: Navigate months with arrow buttons, click dates
+## 📄 License
 
-    Internet Explorer: Browse portfolio sections via the website list
+[MIT License](LICENSE) — Free to use/fork.
 
-    File Explorer: Click folders and files to view information
+## 🙏 Credits
 
+Built by [Kazi Md. Wazeh Ullah Farhan](https://wazehfarhan.github.io) — Pure vanilla magic! 🎉
 
+---
+
+⭐ **Star on GitHub** if you like retro-modern vibes!
