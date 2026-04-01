@@ -3,55 +3,87 @@ class NotepadApp {
         const notepadId = `notepad-${Date.now()}`;
         
         const content = `
-            <div class="notepad-app" id="${notepadId}" style="height: 100%; display: flex; flex-direction: column;">
-                <!-- Menu Bar -->
-                <div class="notepad-menubar" style="display: flex; background: #ece9d8; border-bottom: 1px solid #ccc; padding: 2px 0; font-size: 12px;">
-                    <div class="notepad-menu-item" data-menu="file" style="padding: 2px 10px; cursor: pointer; position: relative;">
-                        File
-                        <div class="notepad-dropdown" style="display:none; position: absolute; top: 100%; left: 0; background: #ece9d8; border: 1px solid #003399; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); min-width: 160px; z-index: 10;">
-                            <div class="notepad-dropdown-item" data-action="new" style="padding: 5px 20px; cursor: pointer;">New</div>
-                            <div style="height: 1px; background: #ccc; margin: 2px 0;"></div>
-                            <div class="notepad-dropdown-item" data-action="save" style="padding: 5px 20px; cursor: pointer;">Save to Clipboard</div>
-                            <div class="notepad-dropdown-item" data-action="load" style="padding: 5px 20px; cursor: pointer;">Load from Clipboard</div>
-                            <div style="height: 1px; background: #ccc; margin: 2px 0;"></div>
-                            <div class="notepad-dropdown-item" data-action="download" style="padding: 5px 20px; cursor: pointer;">Download as .txt</div>
-                        </div>
-                    </div>
-                    <div class="notepad-menu-item" data-menu="edit" style="padding: 2px 10px; cursor: pointer; position: relative;">
-                        Edit
-                        <div class="notepad-dropdown" style="display:none; position: absolute; top: 100%; left: 0; background: #ece9d8; border: 1px solid #003399; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); min-width: 160px; z-index: 10;">
-                            <div class="notepad-dropdown-item" data-action="undo" style="padding: 5px 20px; cursor: pointer;">Undo</div>
-                            <div style="height: 1px; background: #ccc; margin: 2px 0;"></div>
-                            <div class="notepad-dropdown-item" data-action="select-all" style="padding: 5px 20px; cursor: pointer;">Select All</div>
-                            <div class="notepad-dropdown-item" data-action="clear" style="padding: 5px 20px; cursor: pointer;">Clear All</div>
-                        </div>
-                    </div>
-                    <div class="notepad-menu-item" data-menu="format" style="padding: 2px 10px; cursor: pointer; position: relative;">
-                        Format
-                        <div class="notepad-dropdown" style="display:none; position: absolute; top: 100%; left: 0; background: #ece9d8; border: 1px solid #003399; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); min-width: 160px; z-index: 10;">
-                            <div class="notepad-dropdown-item" data-action="word-wrap" style="padding: 5px 20px; cursor: pointer;">✓ Word Wrap</div>
-                            <div class="notepad-dropdown-item" data-action="font-increase" style="padding: 5px 20px; cursor: pointer;">Increase Font Size</div>
-                            <div class="notepad-dropdown-item" data-action="font-decrease" style="padding: 5px 20px; cursor: pointer;">Decrease Font Size</div>
-                        </div>
-                    </div>
+            <div class="modern-app" id="${notepadId}" style="height: 100%; display: flex; flex-direction: column; padding: 0; background: #ffffff;">
+                
+                <!-- Modern Toolbar -->
+                <div style="display: flex; gap: 8px; padding: 12px 16px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; align-items: center; flex-wrap: wrap;">
+                    
+                    <button class="modern-btn secondary" data-action="new" style="padding: 6px 12px; font-size: 0.8rem;">
+                        <span>📝</span> New
+                    </button>
+                    
+                    <button class="modern-btn secondary" data-action="save" style="padding: 6px 12px; font-size: 0.8rem;">
+                        <span>📋</span> Copy
+                    </button>
+                    
+                    <button class="modern-btn secondary" data-action="load" style="padding: 6px 12px; font-size: 0.8rem;">
+                        <span>📥</span> Paste
+                    </button>
+                    
+                    <button class="modern-btn primary" data-action="download" style="padding: 6px 12px; font-size: 0.8rem;">
+                        <span>💾</span> Download
+                    </button>
+                    
+                    <div style="width: 1px; height: 24px; background: #cbd5e1; margin: 0 4px;"></div>
+                    
+                    <button class="modern-btn secondary" data-action="word-wrap" id="${notepadId}-wrap-btn" style="padding: 6px 12px; font-size: 0.8rem; background: #e2e8f0; color: #1e293b;">
+                        <span>🔤</span> Wrap: On
+                    </button>
+                    
+                    <button class="modern-btn secondary" data-action="font-decrease" style="padding: 6px 10px; font-size: 0.8rem;">
+                        <span>A-</span>
+                    </button>
+                    
+                    <button class="modern-btn secondary" data-action="font-increase" style="padding: 6px 10px; font-size: 0.8rem;">
+                        <span>A+</span>
+                    </button>
+                    
+                    <div style="width: 1px; height: 24px; background: #cbd5e1; margin: 0 4px;"></div>
+                    
+                    <button class="modern-btn secondary" data-action="time" style="padding: 6px 12px; font-size: 0.8rem;">
+                        <span>🕒</span> Time
+                    </button>
+                    
+                    <button class="modern-btn secondary" data-action="find" style="padding: 6px 12px; font-size: 0.8rem;">
+                        <span>🔍</span> Find
+                    </button>
+                    
+                    <button class="modern-btn secondary" data-action="clear" style="padding: 6px 12px; font-size: 0.8rem; color: #ef4444;">
+                        <span>🗑️</span> Clear
+                    </button>
+                    
                 </div>
+                
+                <!-- Find Bar -->
+                <div id="${notepadId}-find-bar" style="display: none; padding: 8px 16px; background: #e2e8f0; border-bottom: 1px solid #cbd5e1; align-items: center; gap: 8px;">
+                    <input type="text" id="${notepadId}-find-input" placeholder="Find text..." style="padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.8rem; outline: none; width: 200px;">
+                    <button class="modern-btn secondary" id="${notepadId}-find-next" style="padding: 4px 8px; font-size: 0.8rem;">Next</button>
+                    <button class="modern-btn secondary" id="${notepadId}-find-close" style="padding: 4px 8px; font-size: 0.8rem;">Close</button>
+                    <span id="${notepadId}-find-status" style="font-size: 0.75rem; color: #64748b; margin-left: 8px;"></span>
+                </div>
+                
                 <!-- Text Area -->
-                <textarea class="notepad-textarea" placeholder="Type your text here..." style="flex: 1; width: 100%; border: none; resize: none; font-family: 'Courier New', monospace; font-size: 13px; padding: 8px; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"></textarea>
+                <div style="flex: 1; padding: 16px; display: flex; overflow: hidden; background: #f1f5f9;">
+                    <textarea class="notepad-textarea" placeholder="Start typing here..." style="flex: 1; width: 100%; height: 100%; border: 1px solid #e2e8f0; border-radius: 8px; resize: none; font-family: 'Inter', sans-serif; font-size: 14px; padding: 16px; outline: none; white-space: pre-wrap; overflow-wrap: break-word; background: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.02); line-height: 1.6; color: #334155; transition: border-color 0.2s;"></textarea>
+                </div>
+                
                 <!-- Status Bar -->
-                <div class="notepad-statusbar" style="display: flex; justify-content: space-between; padding: 3px 8px; background: #ece9d8; border-top: 1px solid #ccc; font-size: 11px; color: #555;">
-                    <span class="notepad-position">Ln 1, Col 1</span>
-                    <span class="notepad-stats">0 characters | 0 words</span>
+                <div class="notepad-statusbar" style="display: flex; justify-content: space-between; padding: 10px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; font-size: 0.75rem; color: #64748b; font-weight: 500; align-items: center;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span class="modern-pill notepad-position" style="margin: 0; padding: 2px 10px;">Ln 1, Col 1</span>
+                        <span class="notepad-stats">0 chars • 0 words</span>
+                    </div>
                 </div>
             </div>
         `;
         
         const win = windowManager.createWindow(
             'notepad',
-            'Untitled - Notepad',
+            'Notes',
             content,
             {
-                width: 650,
-                height: 450
+                width: 700,
+                height: 500
             }
         );
         
@@ -63,138 +95,198 @@ class NotepadApp {
             const textarea = container.querySelector('.notepad-textarea');
             const posDisplay = container.querySelector('.notepad-position');
             const statsDisplay = container.querySelector('.notepad-stats');
-            const menuItems = container.querySelectorAll('.notepad-menu-item');
+            const wrapBtn = container.querySelector(`#${notepadId}-wrap-btn`);
+            const buttons = container.querySelectorAll('.modern-btn');
+            const findBar = container.querySelector(`#${notepadId}-find-bar`);
+            const findInput = container.querySelector(`#${notepadId}-find-input`);
+            const findNext = container.querySelector(`#${notepadId}-find-next`);
+            const findClose = container.querySelector(`#${notepadId}-find-close`);
+            const findStatus = container.querySelector(`#${notepadId}-find-status`);
+            
             let wordWrap = true;
-            let fontSize = 13;
+            let fontSize = 14;
+            let lastSearchIndex = -1;
+            
+            // Auto-load from localStorage
+            const savedText = localStorage.getItem('portfolio-notepad-data');
+            if (savedText !== null) {
+                textarea.value = savedText;
+            }
+            
+            // Focus textarea ring behavior
+            textarea.addEventListener('focus', () => {
+                textarea.style.borderColor = '#3b82f6';
+                textarea.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.2)';
+            });
+            textarea.addEventListener('blur', () => {
+                textarea.style.borderColor = '#e2e8f0';
+                textarea.style.boxShadow = '0 2px 4px rgba(0,0,0,0.02)';
+            });
             
             // Update status bar on input/click
             const updateStatus = () => {
                 const text = textarea.value;
                 const pos = textarea.selectionStart;
-                const lines = text.substring(0, pos).split('\\n');
+                const lines = text.substring(0, pos).split('\n');
                 const ln = lines.length;
                 const col = lines[lines.length - 1].length + 1;
                 const charCount = text.length;
-                const wordCount = text.trim() ? text.trim().split(/\\s+/).length : 0;
+                const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
                 
                 posDisplay.textContent = `Ln ${ln}, Col ${col}`;
-                statsDisplay.textContent = `${charCount} characters | ${wordCount} words`;
+                statsDisplay.textContent = `${charCount} chars • ${wordCount} words`;
+                
+                // Auto-save to localStorage
+                localStorage.setItem('portfolio-notepad-data', text);
             };
+            
+            // Initialization update
+            updateStatus();
+            
+            // Find Bar Logic
+            const performFind = () => {
+                const term = findInput.value.toLowerCase();
+                const content = textarea.value.toLowerCase();
+                if (!term) return;
+                
+                const startIndex = lastSearchIndex + 1 >= content.length ? 0 : lastSearchIndex + 1;
+                let index = content.indexOf(term, startIndex);
+                if (index === -1) {
+                    // Try wrapping around
+                    index = content.indexOf(term, 0);
+                    if (index === -1) {
+                        findStatus.textContent = 'No results found.';
+                        return;
+                    }
+                }
+                
+                findStatus.textContent = '';
+                lastSearchIndex = index;
+                
+                textarea.focus();
+                textarea.setSelectionRange(index, index + term.length);
+                
+                // Approximate scrolling to view
+                const textBefore = textarea.value.substring(0, index);
+                const lineCount = (textBefore.match(/\n/g) || []).length;
+                const lineHeight = parseInt(getComputedStyle(textarea).lineHeight) || 22;
+                textarea.scrollTop = lineCount * lineHeight;
+            };
+            
+            findNext.addEventListener('click', performFind);
+            findInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') performFind();
+            });
+            findClose.addEventListener('click', () => {
+                findBar.style.display = 'none';
+                lastSearchIndex = -1;
+            });
             
             textarea.addEventListener('input', updateStatus);
             textarea.addEventListener('click', updateStatus);
             textarea.addEventListener('keyup', updateStatus);
             
-            // Menu dropdowns
-            menuItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const dropdown = item.querySelector('.notepad-dropdown');
+            // Button actions
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const action = btn.getAttribute('data-action');
+                    if (!action) return;
                     
-                    // Close all other dropdowns
-                    menuItems.forEach(other => {
-                        if (other !== item) {
-                            other.querySelector('.notepad-dropdown').style.display = 'none';
-                        }
-                    });
-                    
-                    // Toggle this dropdown
-                    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-                });
-            });
-            
-            // Close dropdowns on click outside
-            document.addEventListener('click', () => {
-                menuItems.forEach(item => {
-                    item.querySelector('.notepad-dropdown').style.display = 'none';
-                });
-            });
-            
-            // Dropdown hover
-            container.querySelectorAll('.notepad-dropdown-item').forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.background = '#316ac5';
-                    item.style.color = 'white';
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.style.background = '';
-                    item.style.color = '';
-                });
-            });
-            
-            // Dropdown actions
-            container.addEventListener('click', (e) => {
-                const actionItem = e.target.closest('.notepad-dropdown-item');
-                if (!actionItem) return;
-                
-                const action = actionItem.getAttribute('data-action');
-                
-                switch (action) {
-                    case 'new':
-                        if (textarea.value && !confirm('Discard current text?')) return;
-                        textarea.value = '';
-                        updateStatus();
-                        break;
-                        
-                    case 'save':
-                        navigator.clipboard.writeText(textarea.value).then(() => {
-                            alert('Text copied to clipboard!');
-                        });
-                        break;
-                        
-                    case 'load':
-                        navigator.clipboard.readText().then(text => {
-                            textarea.value = text;
+                    switch (action) {
+                        case 'new':
+                            if (textarea.value && !confirm('Discard current text?')) return;
+                            textarea.value = '';
                             updateStatus();
-                        }).catch(() => {
-                            alert('Unable to read clipboard. Please paste manually (Ctrl+V).');
-                        });
-                        break;
-                        
-                    case 'download':
-                        const blob = new Blob([textarea.value], { type: 'text/plain' });
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = 'untitled.txt';
-                        a.click();
-                        URL.revokeObjectURL(url);
-                        break;
-                        
-                    case 'undo':
-                        document.execCommand('undo');
-                        break;
-                        
-                    case 'select-all':
-                        textarea.select();
-                        break;
-                        
-                    case 'clear':
-                        textarea.value = '';
-                        updateStatus();
-                        break;
-                        
-                    case 'word-wrap':
-                        wordWrap = !wordWrap;
-                        textarea.style.whiteSpace = wordWrap ? 'pre-wrap' : 'pre';
-                        textarea.style.overflowX = wordWrap ? 'hidden' : 'auto';
-                        actionItem.textContent = (wordWrap ? '✓ ' : '') + 'Word Wrap';
-                        break;
-                        
-                    case 'font-increase':
-                        fontSize = Math.min(24, fontSize + 1);
-                        textarea.style.fontSize = fontSize + 'px';
-                        break;
-                        
-                    case 'font-decrease':
-                        fontSize = Math.max(8, fontSize - 1);
-                        textarea.style.fontSize = fontSize + 'px';
-                        break;
-                }
-                
-                // Close all dropdowns
-                menuItems.forEach(m => {
-                    m.querySelector('.notepad-dropdown').style.display = 'none';
+                            break;
+                            
+                        case 'save': // Copy to clipboard
+                            navigator.clipboard.writeText(textarea.value).then(() => {
+                                // Simple visual feedback
+                                const originalText = btn.innerHTML;
+                                btn.innerHTML = '<span>✅</span> Copied!';
+                                setTimeout(() => {
+                                    btn.innerHTML = originalText;
+                                }, 2000);
+                            });
+                            break;
+                            
+                        case 'load': // Paste from clipboard
+                            navigator.clipboard.readText().then(text => {
+                                const start = textarea.selectionStart;
+                                const end = textarea.selectionEnd;
+                                textarea.value = textarea.value.substring(0, start) + text + textarea.value.substring(end);
+                                textarea.selectionStart = textarea.selectionEnd = start + text.length;
+                                updateStatus();
+                            }).catch(() => {
+                                alert('Unable to safely read clipboard directly in this browser. Please paste manually (Ctrl+V / Cmd+V).');
+                            });
+                            break;
+                            
+                        case 'download':
+                            const blob = new Blob([textarea.value], { type: 'text/plain' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'Note-' + Date.now() + '.txt';
+                            a.click();
+                            URL.revokeObjectURL(url);
+                            break;
+                            
+                        case 'word-wrap':
+                            wordWrap = !wordWrap;
+                            textarea.style.whiteSpace = wordWrap ? 'pre-wrap' : 'pre';
+                            textarea.style.overflowX = wordWrap ? 'hidden' : 'auto';
+                            
+                            // Visual toggle styling
+                            if (wordWrap) {
+                                btn.innerHTML = '<span>🔤</span> Wrap: On';
+                                btn.style.background = '#e2e8f0';
+                                btn.style.color = '#1e293b';
+                            } else {
+                                btn.innerHTML = '<span>🔤</span> Wrap: Off';
+                                btn.style.background = '#f1f5f9';
+                                btn.style.color = '#475569';
+                            }
+                            break;
+                            
+                        case 'font-increase':
+                            fontSize = Math.min(32, fontSize + 2);
+                            textarea.style.fontSize = fontSize + 'px';
+                            break;
+                            
+                        case 'font-decrease':
+                            fontSize = Math.max(10, fontSize - 2);
+                            textarea.style.fontSize = fontSize + 'px';
+                            break;
+                            
+                        case 'time':
+                            const now = new Date();
+                            const stamp = `[${now.toLocaleDateString()} ${now.toLocaleTimeString()}] `;
+                            const start = textarea.selectionStart;
+                            const end = textarea.selectionEnd;
+                            textarea.value = textarea.value.substring(0, start) + stamp + textarea.value.substring(end);
+                            textarea.selectionStart = textarea.selectionEnd = start + stamp.length;
+                            updateStatus();
+                            textarea.focus();
+                            break;
+                            
+                        case 'find':
+                            findBar.style.display = findBar.style.display === 'none' ? 'flex' : 'none';
+                            if (findBar.style.display === 'flex') {
+                                findInput.focus();
+                            } else {
+                                lastSearchIndex = -1;
+                            }
+                            break;
+                            
+                        case 'clear':
+                            if (confirm('Are you sure you want to delete all text?')) {
+                                textarea.value = '';
+                                updateStatus();
+                                textarea.focus();
+                            }
+                            break;
+                    }
                 });
             });
             
