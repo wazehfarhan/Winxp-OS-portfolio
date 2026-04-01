@@ -40,8 +40,16 @@ class WindowManager {
         windowElement.style.left = `${config.x}px`;
         windowElement.style.top = `${config.y}px`;
         
-        const resizeHandle = config.resizable ? 
-            '<div class="window-resize-handle"></div>' : '';
+        const resizeHandles = config.resizable ? `
+            <div class="resize-handle n" data-direction="n"></div>
+            <div class="resize-handle s" data-direction="s"></div>
+            <div class="resize-handle e" data-direction="e"></div>
+            <div class="resize-handle w" data-direction="w"></div>
+            <div class="resize-handle ne" data-direction="ne"></div>
+            <div class="resize-handle nw" data-direction="nw"></div>
+            <div class="resize-handle se" data-direction="se"></div>
+            <div class="resize-handle sw" data-direction="sw"></div>
+        ` : '';
         
         windowElement.innerHTML = `
             <div class="window-header">
@@ -55,7 +63,7 @@ class WindowManager {
             <div class="window-content">
                 ${content}
             </div>
-            ${resizeHandle}
+            ${resizeHandles}
         `;
         
         this.windowsContainer.appendChild(windowElement);
@@ -85,7 +93,6 @@ class WindowManager {
         const minimizeBtn = element.querySelector('.minimize');
         const maximizeBtn = element.querySelector('.maximize');
         const closeBtn = element.querySelector('.close');
-        const resizeHandle = element.querySelector('.window-resize-handle');
         
         // Drag functionality - FIXED: Direct event handling for performance
         header.addEventListener('mousedown', (e) => {
@@ -94,9 +101,12 @@ class WindowManager {
         });
         
         // Resize functionality
-        if (resizeHandle && config.resizable) {
-            resizeHandle.addEventListener('mousedown', (e) => {
-                this.startResize(windowObj, e);
+        if (config.resizable) {
+            const handles = element.querySelectorAll('.resize-handle');
+            handles.forEach(handle => {
+                handle.addEventListener('mousedown', (e) => {
+                    this.startResize(windowObj, e, handle.dataset.direction);
+                });
             });
         }
         
@@ -142,18 +152,22 @@ class WindowManager {
         e.preventDefault();
     }
     
-    startResize(windowObj, e) {
+    startResize(windowObj, e, direction) {
         if (windowObj.isMaximized) return;
         
         this.resizing = windowObj;
-        this.initialSize = {
-            width: parseInt(windowObj.element.style.width),
-            height: parseInt(windowObj.element.style.height)
+        this.resizeDirection = direction || 'se';
+        this.initialRect = {
+            width: parseInt(windowObj.element.style.width) || windowObj.element.offsetWidth,
+            height: parseInt(windowObj.element.style.height) || windowObj.element.offsetHeight,
+            left: parseInt(windowObj.element.style.left) || windowObj.element.offsetLeft,
+            top: parseInt(windowObj.element.style.top) || windowObj.element.offsetTop
         };
         this.resizeStart = { x: e.clientX, y: e.clientY };
         
         this.bringToFront(windowObj);
         e.preventDefault();
+        e.stopPropagation();
     }
     
     handleMouseMove(e) {
@@ -169,12 +183,33 @@ class WindowManager {
         if (this.resizing) {
             const deltaX = e.clientX - this.resizeStart.x;
             const deltaY = e.clientY - this.resizeStart.y;
+            const dir = this.resizeDirection;
+            const minWidth = 300;
+            const minHeight = 200;
             
-            const newWidth = Math.max(300, this.initialSize.width + deltaX);
-            const newHeight = Math.max(200, this.initialSize.height + deltaY);
+            let newWidth = this.initialRect.width;
+            let newHeight = this.initialRect.height;
+            let newLeft = this.initialRect.left;
+            let newTop = this.initialRect.top;
+            
+            if (dir.includes('e')) {
+                newWidth = Math.max(minWidth, this.initialRect.width + deltaX);
+            } else if (dir.includes('w')) {
+                newWidth = Math.max(minWidth, this.initialRect.width - deltaX);
+                newLeft = this.initialRect.left + (this.initialRect.width - newWidth);
+            }
+            
+            if (dir.includes('s')) {
+                newHeight = Math.max(minHeight, this.initialRect.height + deltaY);
+            } else if (dir.includes('n')) {
+                newHeight = Math.max(minHeight, this.initialRect.height - deltaY);
+                newTop = this.initialRect.top + (this.initialRect.height - newHeight);
+            }
             
             this.resizing.element.style.width = `${newWidth}px`;
             this.resizing.element.style.height = `${newHeight}px`;
+            this.resizing.element.style.left = `${newLeft}px`;
+            this.resizing.element.style.top = `${newTop}px`;
         }
     }
     
