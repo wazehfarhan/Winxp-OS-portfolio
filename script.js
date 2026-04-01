@@ -77,11 +77,10 @@ class WindowsXPWebOS {
           </div>
           <div id="mac-date" style="font-size: 26px; font-weight: 400; letter-spacing: 0.5px; text-shadow: 0 2px 12px rgba(0,0,0,0.4); opacity: 0.95;">Date</div>
         </div>
-
         <!-- User Profile Section -->
         <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-          <div style="width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.4); position: relative; z-index: 10;">
-            <img src="assets/img/propic.png" onerror="this.src='https://ui-avatars.com/api/?name=Wazeh+Farhan&background=0D8ABC&color=fff&size=128'" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="User Profile">
+          <div style="width: 140px; height: 140px; border-radius: 50%; background: #333; border: 1px solid rgba(255,255,255,0.3); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.4); position: relative; z-index: 10;">
+            <img src="assets/img/propic.png" onerror="console.error('Profile picture failed to load. Falling back to UI-Avatars.'); this.src='https://ui-avatars.com/api/?name=Wazeh+Farhan&background=0D8ABC&color=fff&size=128'" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="User Profile">
           </div>
           <div style="font-size: 30px; font-weight: 600; text-shadow: 0 4px 12px rgba(0,0,0,0.6); margin-top: 5px;">wazeh farhan</div>
           <button id="mac-continue-btn" style="margin-top: 15px; padding: 10px 45px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); color: white; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(12px);">Continue</button>
@@ -132,11 +131,7 @@ class WindowsXPWebOS {
 
     contBtn.onclick = () => {
       clearInterval(clockInterval);
-      contBtn.innerHTML = "↻";
-      setTimeout(() => {
-        loginScreen.classList.add("hidden");
-        this.showDesktop();
-      }, 800);
+      this.showDesktop();
     };
 
     shutBtn.onclick = () => {
@@ -150,12 +145,32 @@ class WindowsXPWebOS {
 
   showDesktop() {
     // Update user name in start menu
-    document.querySelector(".user-name").textContent = "wazeh farhan";
+    const userNameEl = document.querySelector(".user-name");
+    if (userNameEl) userNameEl.textContent = "wazeh farhan";
 
     // Show desktop
     document.getElementById("boot-screen").classList.add("hidden");
     document.getElementById("login-screen").classList.add("hidden");
-    document.getElementById("desktop").classList.remove("hidden");
+    const desktop = document.getElementById("desktop");
+    desktop.classList.remove("hidden"); // Make it visible
+
+    // Apply zoom-in animation for desktop appearance
+    desktop.style.opacity = "0"; // Start invisible
+    desktop.style.transform = "scale(0.95)"; // Start slightly scaled down
+    desktop.style.transition = "transform 0.5s ease-out, opacity 0.5s ease-out"; // Define transition
+
+    setTimeout(() => {
+      desktop.style.opacity = "1";
+      desktop.style.transform = "scale(1)";
+    }, 50); // Small delay to ensure initial styles are rendered before transition
+
+    // Clean up animation styles after it completes
+    setTimeout(() => {
+      desktop.style.transition = "";
+      desktop.style.opacity = "";
+      desktop.style.transform = "";
+    }, 550); // 50ms delay + 500ms transition duration
+
     this.currentScreen = "desktop";
 
     // Apply wallpaper
